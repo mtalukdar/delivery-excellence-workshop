@@ -13,7 +13,7 @@
     { href: "evaluation.html",   label: "Evaluation" },
     { href: "participants.html", label: "Participants" },
     { href: "rfp-details.html",  label: "RfP Details", soon: true },
-    { href: "teams.html",        label: "Teams & Groups" }
+    { href: "teams.html",        label: "Teams & RfP" }
   ];
 
   const current = document.body.dataset.page || "index.html";
@@ -27,8 +27,7 @@
         <a class="brand" href="index.html" aria-label="BJIT — Delivery Excellence Workshop home">
           <img src="assets/bjit-logo.svg" alt="BJIT logo">
           <span class="brand-text">
-            <strong>Delivery Excellence Workshop</strong>
-            <span>BJIT</span>
+            <strong>Delivery Excellence<br>Workshop</strong>
           </span>
         </a>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -81,7 +80,7 @@
             <ul>
               <li><a href="participants.html">Participants</a></li>
               <li><a href="rfp-details.html">RfP Details</a></li>
-              <li><a href="teams.html">Teams &amp; Groups</a></li>
+              <li><a href="teams.html">Teams &amp; RfP</a></li>
             </ul>
           </div>
         </div>
@@ -257,7 +256,7 @@
           </div>
           <h3 class="team-name">${mark(t.name, q)}</h3>
           <p class="team-slogan">${t.slogan}</p>
-          <div class="team-customer">👤 Customer &amp; Judge: <b>${mark(t.customer, q)}</b></div>
+          <div class="team-customer">👤 Customer: <b>${mark(t.customer, q)}</b></div>
           <div class="team-members">
             ${t.members.map(m => `
               <span class="member${q && m.toLowerCase().includes(q) ? " hit" : ""}">
