@@ -13,7 +13,7 @@
     { href: "evaluation.html",   label: "Evaluation" },
     { href: "participants.html", label: "Participants" },
     { href: "rfp-details.html",  label: "RfP Details", soon: true },
-    { href: "teams.html",        label: "Teams & Groups", soon: true }
+    { href: "teams.html",        label: "Teams & Groups" }
   ];
 
   const current = document.body.dataset.page || "index.html";
@@ -28,7 +28,7 @@
           <img src="assets/bjit-logo.svg" alt="BJIT logo">
           <span class="brand-text">
             <strong>Delivery Excellence Workshop</strong>
-            <span>BJIT &middot; 1 August 2026</span>
+            <span>BJIT</span>
           </span>
         </a>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -182,12 +182,19 @@
     const grid = document.getElementById("rfp-grid");
     if (!grid) return;
     const bar = document.getElementById("filter-bar");
+    const input = document.getElementById("rfp-search");
+    const pill = document.getElementById("rfp-count");
+    let activeFilter = "all";
 
     bar.innerHTML = RFP_FILTERS.map((f, i) =>
       `<button class="filter-btn ${i === 0 ? "active" : ""}" data-filter="${f.key}">${f.label}</button>`).join("");
 
-    function draw(key) {
-      const list = key === "all" ? RFPS : RFPS.filter(r => r.filter === key);
+    function draw() {
+      const q = (input && input.value || "").trim().toLowerCase();
+      const list = RFPS.filter(r =>
+        (activeFilter === "all" || r.filter === activeFilter) &&
+        (!q || r.customer.toLowerCase().includes(q) || r.id.toLowerCase().includes(q)));
+      if (pill) pill.textContent = list.length + " RfP" + (list.length === 1 ? "" : "s");
       grid.innerHTML = list.map((r, i) => `
         <article class="rfp-card" style="animation-delay:${Math.min(i * 45, 400)}ms">
           <div class="rfp-head">
@@ -199,18 +206,69 @@
             <div class="rfp-row"><b>Scope</b><span>${r.scope}</span></div>
             <div class="rfp-row"><b>Domain</b><span>${r.domain}</span></div>
             <div class="rfp-row"><b>Customer keeps</b><span>${r.keeps}</span></div>
+            <div class="rfp-row rfp-customer"><b>Customer</b><span>👤 ${r.customer}</span></div>
           </div>
-        </article>`).join("");
+        </article>`).join("") ||
+        `<p style="grid-column:1/-1;text-align:center;color:var(--muted)">No RfP matches “${input.value}”.</p>`;
     }
-    draw("all");
+    draw();
 
     bar.addEventListener("click", (e) => {
       const btn = e.target.closest(".filter-btn");
       if (!btn) return;
       bar.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      draw(btn.dataset.filter);
+      activeFilter = btn.dataset.filter;
+      draw();
     });
+    if (input) input.addEventListener("input", draw);
+  }
+
+  /* ---------------- Teams & Groups page ---------------- */
+  function renderTeams() {
+    const grid = document.getElementById("team-grid");
+    if (!grid) return;
+    const input = document.getElementById("team-search");
+    const pill = document.getElementById("team-count");
+
+    function initials(name) {
+      return name.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join("");
+    }
+    function mark(text, q) {
+      if (!q) return text;
+      const i = text.toLowerCase().indexOf(q);
+      if (i === -1) return text;
+      return text.slice(0, i) + "<mark>" + text.slice(i, i + q.length) + "</mark>" + text.slice(i + q.length);
+    }
+    function draw() {
+      const q = (input.value || "").trim().toLowerCase();
+      const list = TEAMS.filter(t =>
+        !q ||
+        t.members.some(m => m.toLowerCase().includes(q)) ||
+        t.name.toLowerCase().includes(q) ||
+        t.customer.toLowerCase().includes(q) ||
+        t.rfp.toLowerCase().includes(q));
+      pill.textContent = list.length + " team" + (list.length === 1 ? "" : "s");
+      grid.innerHTML = list.map((t, i) => `
+        <article class="team-card" style="animation-delay:${Math.min(i * 45, 400)}ms">
+          <div class="rfp-head">
+            <span class="rfp-id">${t.rfp}</span>
+            <span class="rfp-cat ${CAT_TONES[t.rfp && (RFPS.find(r => r.id === t.rfp) || {}).filter] || "tone-lav"}">${t.platform}</span>
+          </div>
+          <h3 class="team-name">${mark(t.name, q)}</h3>
+          <p class="team-slogan">${t.slogan}</p>
+          <div class="team-customer">👤 Customer &amp; Judge: <b>${mark(t.customer, q)}</b></div>
+          <div class="team-members">
+            ${t.members.map(m => `
+              <span class="member${q && m.toLowerCase().includes(q) ? " hit" : ""}">
+                <span class="m-avatar" style="background:${SPEC_COLORS[t.category] || "#7472c9"}">${initials(m)}</span>${mark(m, q)}
+              </span>`).join("")}
+          </div>
+        </article>`).join("") ||
+        `<p style="grid-column:1/-1;text-align:center;color:var(--muted)">No team, DM or customer matches “${input.value}”.</p>`;
+    }
+    draw();
+    input.addEventListener("input", draw);
   }
 
   /* ---------------- Governance page ---------------- */
@@ -284,7 +342,8 @@
   /* ---------------- Participants page ---------------- */
   const SPEC_COLORS = {
     "Web": "#7472c9", "Mobile": "#4fae8d", "SQA": "#c9a24b", "Mechanical": "#a54a68",
-    "PC + Embedded": "#5b8fd4", "PC+Embed": "#5b8fd4", "ERP": "#b05f36", "Cloud": "#3e9db0", "Other": "#8a879e"
+    "PC + Embedded": "#5b8fd4", "PC+Embed": "#5b8fd4", "ERP": "#b05f36", "SAP": "#b05f36",
+    "Cloud": "#3e9db0", "Data": "#5d78ab", "Hybrid": "#8a879e", "Other": "#8a879e"
   };
 
   function renderParticipants() {
@@ -376,6 +435,7 @@
     buildFooter();
     renderAgenda();
     renderRfps();
+    renderTeams();
     renderGovernance();
     renderEvaluation();
     renderParticipants();

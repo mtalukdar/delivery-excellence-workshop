@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teams &amp; Groups · Delivery Excellence Workshop · BJIT</title>
-  <meta name="description" content="Team and group setup for the BJIT Delivery Excellence Workshop — coming soon.">
+  <meta name="description" content="The 20 teams of the BJIT Delivery Excellence Workshop — members, slogans, RfP and customer for every group.">
   <link rel="icon" type="image/svg+xml" href="assets/bjit-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,27 +13,30 @@
 </head>
 <body data-page="teams.html">
 
-  <section class="page-hero" style="padding-bottom:20px">
+  <section class="page-hero">
     <div class="blob blob-3"></div>
     <div class="blob blob-2"></div>
     <div class="container" style="position:relative;z-index:2">
-      <span class="eyebrow">Being Assembled</span>
+      <span class="eyebrow">20 Teams · One RfP Each</span>
+      <h1>Teams &amp; Groups</h1>
+      <p>99 Delivery Managers in 20 teams, assembled by category — each team owns one live RfP and faces one customer. Find your team, meet your teammates, and start shaping your strategy.</p>
     </div>
   </section>
 
-  <section class="soon-wrap container">
-    <div class="soon-art" aria-hidden="true">
-      <div class="orbit"><span class="sat">🧑‍💻</span></div>
-      <div class="orbit orbit-2"><span class="sat">🤝</span></div>
-      <div class="orbit orbit-3"><span class="sat">🎯</span></div>
-      <div class="soon-core">🧩</div>
-    </div>
-    <h2>Teams &amp; Groups — Coming Soon</h2>
-    <p class="soon-msg">21 groups of 5 are being carefully balanced across specialities — web, mobile, SQA, mechanical, cloud, ERP and more. Group details will be shared as soon as possible, so groups can make their strategies in advance of the workshop.</p>
-    <p style="margin-bottom:34px"><span class="typing" id="typing" data-phrases='["Balancing 105 DMs into 21 groups…","Pairing every group with its customer…","Mixing specialities for maximum strength…","Almost there — strategies at the ready!"]'></span></p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="participants.html">Meet the Participants</a>
-      <a class="btn btn-ghost" href="index.html">Back to Home</a>
+  <section class="section">
+    <div class="container">
+      <div class="search-box reveal">
+        <span>🔍</span>
+        <input type="search" id="team-search" placeholder="Search by DM name, team, customer or RfP…" aria-label="Search teams by DM name, team name, customer or RfP number">
+        <span class="count-pill" id="team-count"></span>
+      </div>
+      <div class="team-grid" id="team-grid"></div>
+      <div style="margin-top:44px" class="reveal">
+        <div class="callout">
+          <span class="c-icon">🤫</span>
+          <p><b>No cross-group sharing.</b> Each engagement is confidential between a team and its customer — your RfP, your questions, your proposal. The customer listed on your card is also your judge.</p>
+        </div>
+      </div>
     </div>
   </section>
 

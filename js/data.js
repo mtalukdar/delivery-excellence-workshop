@@ -1,6 +1,7 @@
 /* ============================================================
    Delivery Excellence Workshop — shared data
    Source: BJIT Delivery Excellence Workshop Plan (1 Aug 2026, v1.0)
+   Rosters: 'DM summary, list, customer list - new.xlsx'
    ============================================================ */
 
 const WORKSHOP = {
@@ -68,7 +69,7 @@ const AGENDA = [
     place: "Auditorium · plenary",
     icon: "🎤",
     tone: "sky",
-    detail: "21 groups × 10 minutes HARD STOP (recommended 8 min pitch + 2 min Q&A/changeover). Judges score live via Microsoft Form. Running order announced at freeze."
+    detail: "20 groups × 10 minutes HARD STOP (recommended 8 min pitch + 2 min Q&A/changeover). Judges score live via Microsoft Form. Running order announced at freeze."
   },
   {
     time: "17:30 – 18:00",
@@ -80,33 +81,32 @@ const AGENDA = [
   }
 ];
 
-/* ---------------- RfP Catalog (21 engagements) ---------------- */
+/* ---------------- RfP Catalog (20 engagements, from 'RFP Owning Customer' sheet) ---------------- */
 const RFPS = [
-  { id: "RFP-01", category: "Web application",  filter: "web",        stack: "Java + React, MySQL, AWS",  scope: "Build + manual & automation testing + AWS hosting", domain: "Financial",                          keeps: "UX design" },
-  { id: "RFP-02", category: "Web application",  filter: "web",        stack: "PHP + React, MySQL, AWS",   scope: "Build + manual & automation testing + AWS hosting", domain: "E-commerce",                         keeps: "UX design" },
-  { id: "RFP-03", category: "Web application",  filter: "web",        stack: "Node + React, MySQL, AWS",  scope: "Build + manual & automation testing + AWS hosting", domain: "Real estate",                        keeps: "UX design" },
-  { id: "RFP-04", category: "Mobile application", filter: "mobile",   stack: "Native Android",            scope: "Build + testing + market release",                  domain: "E-commerce",                         keeps: "Backend" },
-  { id: "RFP-05", category: "Mobile application", filter: "mobile",   stack: "Swift (iOS)",               scope: "Build + testing + market release",                  domain: "Financial",                          keeps: "Backend" },
-  { id: "RFP-06", category: "Mobile application", filter: "mobile",   stack: "Flutter",                   scope: "Build + testing + market release",                  domain: "Real estate",                        keeps: "Backend" },
-  { id: "RFP-07", category: "PC application",   filter: "pc",         stack: "C#.NET desktop",            scope: "Build + manual & automation testing + release",     domain: "Manufacturing (equipment control)",  keeps: "Backend / data systems" },
-  { id: "RFP-08", category: "Embedded",         filter: "embedded",   stack: "C/C++ automotive embedded", scope: "Build + testing + release",                         domain: "Automotive (ECU/ADAS supplier)",     keeps: "Hardware & specs" },
-  { id: "RFP-09", category: "Maintenance",      filter: "maintenance",stack: "Java + React legacy, AWS",  scope: "User support, infra monitoring, FE/BE bug fixes, CR handling", domain: "Financial",              keeps: "Product roadmap" },
-  { id: "RFP-10", category: "Maintenance",      filter: "maintenance",stack: "PHP + React legacy, AWS",   scope: "User support, infra monitoring, FE/BE bug fixes, CR handling", domain: "E-commerce",             keeps: "Product roadmap" },
-  { id: "RFP-11", category: "Maintenance",      filter: "maintenance",stack: "Node + React legacy, AWS",  scope: "User support, infra monitoring, FE/BE bug fixes, CR handling", domain: "Real estate",            keeps: "Product roadmap" },
-  { id: "RFP-12", category: "Legacy migration", filter: "migration",  stack: "COBOL → React + Spring",    scope: "Desktop-to-web migration",                          domain: "Pharmaceutical inventory",           keeps: "Domain SMEs, data" },
-  { id: "RFP-13", category: "QA partner",       filter: "qa",         stack: "UI, API, manual & automation", scope: "Independent QA for operator systems",            domain: "Telecom",                            keeps: "All development" },
-  { id: "RFP-14", category: "Migration QA",     filter: "qa",         stack: "PowerBuilder → React + Spring", scope: "ST, SIT, Scenario, Regression, UAT",            domain: "Insurance (policy admin)",           keeps: "All development" },
-  { id: "RFP-15", category: "Mechanical design",filter: "mechanical", stack: "SolidWorks",                scope: "Design services",                                   domain: "Consumer appliances",                keeps: "Mfg. & validation" },
-  { id: "RFP-16", category: "Mechanical design",filter: "mechanical", stack: "CATIA",                     scope: "Design services",                                   domain: "Automotive body parts",              keeps: "Mfg. & validation" },
-  { id: "RFP-17", category: "Cloud infra & SecOps", filter: "cloud",  stack: "HA, multi-zone, dynamic scaling, SIEM + SOAR, DevSecOps", scope: "Infra design, automation, monitoring & operation", domain: "Financial services platform", keeps: "Application development" },
-  { id: "RFP-18", category: "Low-code",         filter: "lowcode",    stack: "OutSystems",                scope: "New platform build",                                domain: "Warehouse management",               keeps: "Business process owners" },
-  { id: "RFP-19", category: "LABO refactoring", filter: "labo",       stack: "Existing stack (web)",      scope: "Massive refactoring under long-running LABO (ODC) model", domain: "E-commerce web service",       keeps: "Product ownership" },
-  { id: "RFP-20", category: "SAP ERP",          filter: "erp",        stack: "SAP",                       scope: "Setup, customization, integration, testing & maintenance", domain: "Warehouse management",       keeps: "Business sign-off" },
-  { id: "RFP-21", category: "Engineering data", filter: "engdata",    stack: "TeamCenter, CATIA V6",      scope: "Data migration, validation, correction, item creation", domain: "Industrial engineering data",   keeps: "PLM ownership" }
+  { id: "RFP-01", category: "Web application", filter: "web", stack: "Java + React, MySQL, AWS", scope: "Build + manual & automation testing + AWS hosting", domain: "Financial", keeps: "UX design", customer: "Sajidul Huq" },
+  { id: "RFP-02", category: "Web application", filter: "web", stack: "PHP + React, MySQL, AWS", scope: "Build + manual & automation testing + AWS hosting", domain: "E-commerce", keeps: "UX design", customer: "Shahjalal Hossain" },
+  { id: "RFP-03", category: "Web application", filter: "web", stack: "Node + React, MySQL, AWS", scope: "Build + manual & automation testing + AWS hosting", domain: "Real estate", keeps: "UX design", customer: "Abdul Halim" },
+  { id: "RFP-04", category: "Mobile application", filter: "mobile", stack: "Native Android", scope: "Build + testing + market release", domain: "E-commerce", keeps: "Backend", customer: "Dewan Shamsul Alam" },
+  { id: "RFP-05", category: "Mobile application", filter: "mobile", stack: "Swift (iOS)", scope: "Build + testing + market release", domain: "Financial", keeps: "Backend", customer: "Mostafizur Rahman" },
+  { id: "RFP-06", category: "Mobile application", filter: "mobile", stack: "Flutter", scope: "Build + testing + market release", domain: "Real estate", keeps: "Backend", customer: "Mamun Ahmed Khan" },
+  { id: "RFP-07", category: "PC application", filter: "pc", stack: "C#.NET desktop", scope: "Build + manual & automation testing + release", domain: "Manufacturing (equipment control)", keeps: "Backend/data systems", customer: "Dipankar Das Shovon" },
+  { id: "RFP-08", category: "Embedded", filter: "embedded", stack: "C/C++ automotive embedded", scope: "Build + testing + release", domain: "Automotive (ECU/ADAS supplier)", keeps: "Hardware & specs", customer: "Iftekhar Uddin Ahmed" },
+  { id: "RFP-09", category: "Maintenance", filter: "maintenance", stack: "Java + React legacy, AWS", scope: "User support, infra monitoring, FE/BE bug fixes, CR handling", domain: "Financial", keeps: "Product roadmap", customer: "Shaiful Islam" },
+  { id: "RFP-10", category: "Maintenance", filter: "maintenance", stack: "PHP + React legacy, AWS", scope: "User support, infra monitoring, FE/BE bug fixes, CR handling", domain: "E-commerce", keeps: "Product roadmap", customer: "Partha Pratim Sarkar" },
+  { id: "RFP-11", category: "Legacy migration", filter: "migration", stack: "COBOL → React + Spring", scope: "Desktop-to-web migration", domain: "Pharmaceutical inventory", keeps: "Domain SMEs, data", customer: "ABM Mahbubur Rahman" },
+  { id: "RFP-12", category: "QA partner", filter: "qa", stack: "UI, API, manual & automation", scope: "Independent QA for operator systems", domain: "Telecom", keeps: "All development", customer: "Himadri Mondol" },
+  { id: "RFP-13", category: "Migration QA", filter: "qa", stack: "PowerBuilder → React + Spring", scope: "ST, SIT, Scenario, Regression, UAT", domain: "Insurance (policy admin)", keeps: "All development", customer: "Nadim Hossain" },
+  { id: "RFP-14", category: "Mechanical design", filter: "mechanical", stack: "SolidWorks", scope: "Design services", domain: "Consumer appliances", keeps: "Mfg. & validation", customer: "Azizul Islam" },
+  { id: "RFP-15", category: "Mechanical design", filter: "mechanical", stack: "CATIA", scope: "Design services", domain: "Automotive body parts", keeps: "Mfg. & validation", customer: "Sayeedul Islam" },
+  { id: "RFP-16", category: "Cloud infra & SecOps", filter: "cloud", stack: "HA, multi-zone, dynamic scaling, SIEM + SOAR, DevSecOps", scope: "Infra design, automation, monitoring & operation", domain: "Financial services platform", keeps: "Application development", customer: "Amir Hossain" },
+  { id: "RFP-17", category: "Low-code", filter: "lowcode", stack: "OutSystems", scope: "New platform build", domain: "Warehouse management", keeps: "Business process owners", customer: "Homayun Kabir" },
+  { id: "RFP-18", category: "LABO refactoring", filter: "labo", stack: "Existing stack (web)", scope: "Massive refactoring under long-running LABO (ODC) model", domain: "E-commerce web service", keeps: "Product ownership", customer: "Minhajur Rahman" },
+  { id: "RFP-19", category: "SAP ERP", filter: "erp", stack: "SAP", scope: "Setup, customization, integration, testing & maintenance", domain: "Warehouse management", keeps: "Business sign-off", customer: "Tareque Arefin" },
+  { id: "RFP-20", category: "Engineering data", filter: "engdata", stack: "TeamCenter, CATIA V6", scope: "Data migration, validation, correction, item creation", domain: "Industrial engineering data", keeps: "PLM ownership", customer: "Susanta Kumar Saha" }
 ];
 
 const RFP_FILTERS = [
-  { key: "all",         label: "All (21)" },
+  { key: "all",         label: "All (20)" },
   { key: "web",         label: "Web" },
   { key: "mobile",      label: "Mobile" },
   { key: "pc",          label: "PC" },
@@ -175,52 +175,196 @@ const PROPOSAL_ITEMS = [
   "Approval & version history", "Team structure", "Resource allocation plan"
 ];
 
-/* ---------------- DM summary (speciality distribution) ---------------- */
+/* ---------------- DM summary (speciality distribution, from 'DM Summary' sheet) ---------------- */
 const DM_SUMMARY = [
-  { speciality: "Web",        count: 37 },
-  { speciality: "Mobile",     count: 15 },
-  { speciality: "SQA",        count: 12 },
-  { speciality: "Mechanical", count: 11 },
-  { speciality: "PC + Embedded", count: 10 },
-  { speciality: "ERP",        count: 6 },
-  { speciality: "Cloud",      count: 6 },
-  { speciality: "Other",      count: 4 }
+  { speciality: "Web",         count: 35, groups: 7 },
+  { speciality: "Mobile",      count: 15, groups: 3 },
+  { speciality: "PC+Embed",    count: 10, groups: 2 },
+  { speciality: "SQA",         count: 10, groups: 2 },
+  { speciality: "ERP",         count:  5, groups: 1 },
+  { speciality: "Cloud",       count:  5, groups: 1 },
+  { speciality: "Mechanical",  count: 10, groups: 2 },
+  { speciality: "Data",        count:  4, groups: 1 },
+  { speciality: "Hybrid",      count:  5, groups: 1 }
 ];
 
-/* ---------------- Delivery Managers ---------------- */
+/* ---------------- Delivery Managers (99, from 'DMs' sheet) ---------------- */
 const DMS = [
   ["Ikramul Hoque","Web"],["Jishnu Sardar","Mobile"],["Minhaz Karim","Web"],["Rezaur Rahman","Web"],
-  ["Ridoan Anik","Web"],["Ahmed Asif","Web"],["Arup Das","Web"],["Barkat Ullah","Mechanical"],
-  ["Giles Cornelius","Other"],["Jahirul Rajib","Web"],["Mushfiqur Rahman","SQA"],["Sam Dsilva","Other"],
-  ["Shahariar Newaj","Other"],["Abdul Quadir","SQA"],["Illius Jamil","SQA"],["Jafrul Sadek","PC+Embed"],
+  ["Ridoan Anik","Hybrid"],["Ahmed Asif","Web"],["Arup Das","Hybrid"],["Barkat Ullah","Mechanical"],
+  ["Giles Cornelius","Data"],["Jahirul Rajib","Web"],["Mushfiqur Rahman","SQA"],["Sam Dsilva","Data"],
+  ["Shahariar Newaj","Data"],["Abdul Quadir","SQA"],["Illius Jamil","Hybrid"],["Jafrul Sadek","PC+Embed"],
   ["Mahmudul Khan","PC+Embed"],["Monowarul Islam","PC+Embed"],["Rafiqul Hasan","PC+Embed"],["Sumon Faruq","Web"],
   ["Sumon Mohtasin","SQA"],["Al Maruf","Mobile"],["Anisur Rahman","Mobile"],["Borhan Uddin","PC+Embed"],
   ["Gobinda Sadhu","Mobile"],["Helal Uddin","Mobile"],["Khairuzzaman Shipon","Mobile"],["Manjurul Hoque","Mobile"],
   ["Samad Mizi","Mobile"],["Ali Mollah","Mechanical"],["Mdmahadi Hasan","Mechanical"],["Muktadir Hossain","Mechanical"],
-  ["Omar Faruq","Mechanical"],["Rakibul Islam","Mechanical"],["Samirul Islam","Mechanical"],["Shahrukh Khan","Mechanical"],
-  ["Shibashish Saha","Mechanical"],["Amit Mondol","Mobile"],["Arefin Newaz","Mobile"],["Ekramul Hoque","Mobile"],
-  ["Islam Mominul","Mobile"],["Mohabul Hossain","Mobile"],["Rasel Rana","Mobile"],["Rejaul Hasan","PC+Embed"],
-  ["Saidul Ziku","Web"],["Shajal Chandra","ERP"],["Shamim Hossen","ERP"],["Fazla Rabbi","Web"],
-  ["Monir Zzaman","Web"],["Rashedul Alam","Mobile"],["Abdullah Hasan","ERP"],["Ahmed Shahriar","ERP"],
-  ["Shakib Jahan","ERP"],["Shaker Ahmed","ERP"],["A Habib","SQA"],["Alman Hossain","SQA"],
-  ["Foysal Ahmed","SQA"],["Himadri Mondal","SQA"],["Sharmin Manjur","SQA"],["Sultan Rabbani","SQA"],
-  ["Sumon Shahriar","SQA"],["Ahasan Khan","Cloud"],["Hassan Razib","Cloud"],["Islam Monjurul","Cloud"],
-  ["Md Tanvir","Cloud"],["Sudip Proshad","Cloud"],["A Masud","Web"],["Abu Rizvi","Web"],
-  ["Abu Saleh","Web"],["Benzir Hasan","Web"],["Fahim Faysal","Web"],["Firoz Ahmed","Web"],
-  ["Golam Rabbi","Web"],["Hafizur Rahman","Web"],["Ibrahim Khalil","Web"],["Md Touhid","Web"],
-  ["Monir Bhuiyan","Web"],["Shamim Khan","Web"],["Thanvir Ahmed","Web"],["Kamal Uddin","Cloud"],
-  ["Abu Hossain","PC+Embed"],["Pritom Routh","PC+Embed"],["Ruhul Amin","PC+Embed"],["Shakhawat Hossin","PC+Embed"],
-  ["Abdullah Qayum","Web"],["Enamul Hasan","Web"],["Liton Miah","Web"],["Mahabub Mollah","Web"],
-  ["Md Asif","Web"],["Md Moniruzzaman","Web"],["Pavel Parvej","Web"],["Sudeepta Biswas","Web"],
-  ["Hossain Delwar","Web"],["Mdshifatul Islam","Web"],["Nazmul Islam","Web"],["Uddin Helal","Web"],
-  ["Subrata Banik","SQA"],["Debashis Bhattacharjee","Other"],["Md Anamul Hasan","Mechanical"],["Md Kamrul Hasan","Mechanical"],
-  ["MD. JOSIM UDDIN RONI","Web"]
+  ["Omar Faruq","Mechanical"],["Rakibul Islam","Mechanical"],["Samirul Islam","Mechanical"],["Shibashish Saha","Mechanical"],
+  ["Amit Mondol","Mobile"],["Arefin Newaz","Mobile"],["Ekramul Hoque","Mobile"],["Islam Mominul","Mobile"],
+  ["Mohabul Hossain","Mobile"],["Rasel Rana","Mobile"],["Rejaul Hasan","PC+Embed"],["Saidul Ziku","Web"],
+  ["Shajal Chandra","SAP"],["Shamim Hossen","Hybrid"],["Fazla Rabbi","Web"],["Monir Zzaman","Web"],
+  ["Rashedul Alam","Mobile"],["Abdullah Hasan","SAP"],["Ahmed Shahriar","SAP"],["Shakib Jahan","SAP"],
+  ["Shaker Ahmed","SAP"],["A Habib","SQA"],["Alman Hossain","SQA"],["Foysal Ahmed","SQA"],
+  ["Sharmin Manjur","SQA"],["Sultan Rabbani","SQA"],["Sumon Shahriar","SQA"],["Ahasan Khan","Cloud"],
+  ["Hassan Razib","Cloud"],["Islam Monjurul","Cloud"],["Md Tanvir","Cloud"],["Sudip Proshad","Hybrid"],
+  ["A Masud","Web"],["Abu Rizvi","Web"],["Abu Saleh","Web"],["Benzir Hasan","Web"],
+  ["Fahim Faysal","Web"],["Firoz Ahmed","Web"],["Golam Rabbi","Web"],["Hafizur Rahman","Web"],
+  ["Ibrahim Khalil","Web"],["Md Touhid","Web"],["Monir Bhuiyan","Web"],["Shamim Khan","Web"],
+  ["Thanvir Ahmed","Web"],["Kamal Uddin","Cloud"],["Abu Hossain","PC+Embed"],["Pritom Routh","PC+Embed"],
+  ["Ruhul Amin","PC+Embed"],["Shakhawat Hossin","PC+Embed"],["Abdullah Qayum","Web"],["Enamul Hasan","Web"],
+  ["Liton Miah","Web"],["Mahabub Mollah","Web"],["Md Asif","Web"],["Md Moniruzzaman","Web"],
+  ["Pavel Parvej","Web"],["Sudeepta Biswas","Web"],["Hossain Delwar","Web"],["Mdshifatul Islam","Web"],
+  ["Nazmul Islam","Web"],["Uddin Helal","Web"],["Subrata Banik","SQA"],["Debashis Bhattacharjee","Data"],
+  ["Md Anamul Hasan","Mechanical"],["Md Kamrul Hasan","Mechanical"],["MD. JOSIM UDDIN RONI","Web"]
 ];
 
-/* ---------------- Customers (ED senior management — also the judges) ---------------- */
+/* ---------------- Customers (20, ED senior management — also the judges) ---------------- */
 const CUSTOMERS = [
   "Nadim Hossain","Islam Shaiful","Sayeedul Islam","Mostafizur Rahman","Azizul Islam",
   "Mamun Khan","Shahjalal Hossain","Tareque Arefin","Sajidul Huq","Susanta Kumar",
   "Homayun Kabir","Iftekhar Ahmed","Amir Shohag","Dewan Shamsul","Minhajur Rahman",
-  "Dipankar Shovon","Abul Kalam Milon","ABM Mahbub Rahman","Partha Sarker","Abdul Halim","TBC"
+  "Dipankar Shovon","ABM Mahbub Rahman","Partha Sarker","Abdul Halim","Himadri"
+];
+
+/* ---------------- Team Formation (20 teams, from 'Team Formation' + 'RFP Handling Team' sheets) ---------------- */
+const TEAMS = [
+  {
+    rfp: "RFP-01", category: "Web", platform: "Web application",
+    name: "The Scope Creepers",
+    slogan: "they smell uncontrolled scope from a mile away",
+    customer: "Sajidul Huq",
+    members: ["A Masud", "Benzir Hasan", "Sumon Faruq", "Shamim Khan", "Mdshifatul Islam"]
+  },
+  {
+    rfp: "RFP-02", category: "Web", platform: "Web application",
+    name: "404: Free Work Not Found",
+    slogan: "no CR, no execution!",
+    customer: "Shahjalal Hossain",
+    members: ["Abdullah Qayum", "Sudeepta Biswas", "Hafizur Rahman", "Md Asif", "Liton Miah"]
+  },
+  {
+    rfp: "RFP-03", category: "Web", platform: "Web application",
+    name: "Ctrl+Alt+Deliver",
+    slogan: "one reboot, every outcome",
+    customer: "Abdul Halim",
+    members: ["Firoz Ahmed", "Abu Rizvi", "Abu Saleh", "Md Moniruzzaman", "Monir Zzaman"]
+  },
+  {
+    rfp: "RFP-04", category: "Mobile", platform: "Mobile application",
+    name: "Swipe Right to Sign Off",
+    slogan: "it's a match only with BRC approval",
+    customer: "Dewan Shamsul Alam",
+    members: ["Islam Mominul", "Amit Mondol", "Samad Mizi", "Rasel Rana", "Ekramul Hoque"]
+  },
+  {
+    rfp: "RFP-05", category: "Mobile", platform: "Mobile application",
+    name: "Push Notification Nation",
+    slogan: "escalate early, escalate loud",
+    customer: "Mostafizur Rahman",
+    members: ["Mohabul Hossain", "Jishnu Sardar", "Manjurul Hoque", "Arefin Newaz", "Al Maruf"]
+  },
+  {
+    rfp: "RFP-06", category: "Mobile", platform: "Mobile application",
+    name: "The App-solute Owners",
+    slogan: "one owner, every release",
+    customer: "Mamun Ahmed Khan",
+    members: ["Rashedul Alam", "Gobinda Sadhu", "Anisur Rahman", "Helal Uddin", "Khairuzzaman Shipon"]
+  },
+  {
+    rfp: "RFP-07", category: "PC+Embed", platform: "PC application",
+    name: "Bare Metal Bidders",
+    slogan: "estimating down to the last register",
+    customer: "Dipankar Das Shovon",
+    members: ["Abu Hossain", "Jafrul Sadek", "Borhan Uddin", "Ruhul Amin", "Rejaul Hasan"]
+  },
+  {
+    rfp: "RFP-08", category: "PC+Embed", platform: "Embedded",
+    name: "The Ctrl Freaks",
+    slogan: "firmware-level governance discipline",
+    customer: "Iftekhar Uddin Ahmed",
+    members: ["Pritom Routh", "Shakhawat Hossin", "Rafiqul Hasan", "Monowarul Islam", "Mahmudul Khan"]
+  },
+  {
+    rfp: "RFP-09", category: "Web", platform: "Maintenance",
+    name: "React & Sign-Off",
+    slogan: "nothing renders without approval",
+    customer: "Shaiful Islam",
+    members: ["Monir Bhuiyan", "Hossain Delwar", "Saidul Ziku", "Mahabub Mollah", "Ikramul Hoque"]
+  },
+  {
+    rfp: "RFP-10", category: "Web", platform: "Maintenance",
+    name: "The Baseline Defenders",
+    slogan: "guardians of the frozen scope",
+    customer: "Partha Pratim Sarkar",
+    members: ["Uddin Helal", "Fahim Faysal", "Md Touhid", "Rezaur Rahman", "Nazmul Islam"]
+  },
+  {
+    rfp: "RFP-11", category: "Web", platform: "Legacy migration",
+    name: "Sixty-Seven Shades of Ownership",
+    slogan: "living all 67 responsibilities",
+    customer: "ABM Mahbubur Rahman",
+    members: ["Pavel Parvej", "Thanvir Ahmed", "Ahmed Asif", "Enamul Hasan", "Jahirul Rajib"]
+  },
+  {
+    rfp: "RFP-12", category: "SQA", platform: "QA partner",
+    name: "Not My Bug Anymore",
+    slogan: "in loving memory of the 8 removed QA tasks",
+    customer: "Himadri Mondol",
+    members: ["Mushfiqur Rahman", "A Habib", "Subrata Banik", "Sharmin Manjur", "Sumon Shahriar"]
+  },
+  {
+    rfp: "RFP-13", category: "SQA", platform: "Migration QA",
+    name: "Test Case Closed",
+    slogan: "evidence or it didn't happen",
+    customer: "Nadim Hossain",
+    members: ["Sumon Mohtasin", "Abdul Quadir", "Foysal Ahmed", "Sultan Rabbani", "Alman Hossain"]
+  },
+  {
+    rfp: "RFP-14", category: "Mechanical", platform: "Mechanical design",
+    name: "The Tolerance Negotiators",
+    slogan: "precise to ±0.01, flexible on nothing else",
+    customer: "Azizul Islam",
+    members: ["Mdmahadi Hasan", "Md Anamul Hasan", "Shibashish Saha", "Ali Mollah", "Samirul Islam"]
+  },
+  {
+    rfp: "RFP-15", category: "Mechanical", platform: "Mechanical design",
+    name: "Torque of the Town",
+    slogan: "applying exactly the right pressure on scope",
+    customer: "Sayeedul Islam",
+    members: ["Barkat Ullah", "Md Kamrul Hasan", "Muktadir Hossain", "Rakibul Islam", "Omar Faruq"]
+  },
+  {
+    rfp: "RFP-16", category: "Cloud", platform: "Cloud infra & SecOps",
+    name: "Reign, No Rain",
+    slogan: "99.9% uptime, 100% margin",
+    customer: "Amir Hossain",
+    members: ["Kamal Uddin", "Ahasan Khan", "Hassan Razib", "Md Tanvir", "Islam Monjurul"]
+  },
+  {
+    rfp: "RFP-17", category: "Web", platform: "Low-code",
+    name: "Full-Stack, Full Margin",
+    slogan: "end to end, profit included",
+    customer: "Homayun Kabir",
+    members: ["MD. JOSIM UDDIN RONI", "Golam Rabbi", "Ibrahim Khalil", "Minhaz Karim", "Fazla Rabbi"]
+  },
+  {
+    rfp: "RFP-18", category: "Hybrid", platform: "LABO refactoring",
+    name: "Jack of All Stacks",
+    slogan: "master of One Purpose",
+    customer: "Minhajur Rahman",
+    members: ["Illius Jamil", "Shamim Hossen", "Arup Das", "Ridoan Anik", "Sudip Proshad"]
+  },
+  {
+    rfp: "RFP-19", category: "SAP", platform: "SAP ERP",
+    name: "ERP-solutely Governed",
+    slogan: "modules change, gates don't",
+    customer: "Tareque Arefin",
+    members: ["Abdullah Hasan", "Shaker Ahmed", "Shakib Jahan", "Shajal Chandra", "Ahmed Shahriar"]
+  },
+  {
+    rfp: "RFP-20", category: "Data", platform: "Engineering data",
+    name: "Query Everything",
+    slogan: "the ambiguity hunters (judges beware)",
+    customer: "Susanta Kumar Saha",
+    members: ["Shahariar Newaj", "Debashis Bhattacharjee", "Giles Cornelius", "Sam Dsilva"]
+  }
 ];
