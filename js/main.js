@@ -86,7 +86,7 @@
         </div>
         <div class="footer-bottom">
           <span>&copy; 2026 BJIT &middot; ${WORKSHOP.title}</span>
-          <span>${WORKSHOP.date} &middot; ${WORKSHOP.venue} &middot; ${WORKSHOP.version}</span>
+          <span>Saturday &middot; ${WORKSHOP.date} &middot; ${WORKSHOP.venue}</span>
         </div>
       </div>`;
     document.body.append(footer);
@@ -403,7 +403,7 @@
         return `
           <div class="person" style="animation-delay:${Math.min(i * 25, 350)}ms">
             <span class="avatar" style="background:${palette[i % palette.length]}">${init}</span>
-            <span><span class="p-name">${tbc ? "To be confirmed" : name}</span><br><span class="p-spec">Customer &middot; Judge ${i + 1}</span></span>
+            <span><span class="p-name">${tbc ? "To be confirmed" : name}</span></span>
           </div>`;
       }).join("");
     }
