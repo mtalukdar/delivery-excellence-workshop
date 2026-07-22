@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Participants · Delivery Excellence Workshop · BJIT</title>
+  <meta name="description" content="Delivery Managers and customers taking part in the BJIT Delivery Excellence Workshop.">
+  <link rel="icon" type="image/svg+xml" href="assets/bjit-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="participants.html">
+
+  <section class="page-hero">
+    <div class="blob blob-3"></div>
+    <div class="blob blob-1"></div>
+    <div class="container" style="position:relative;z-index:2">
+      <span class="eyebrow">Who's in the Room</span>
+      <h1>Participants &amp; Roles</h1>
+      <p>105 Delivery Managers in 21 groups of 5, matched with 21 customers from ED senior management. Each customer plays the full counterpart side for one group — the fictional Japanese client and the BJIT Inc roles (BSE, ADM, Consultant, Sales) — and doubles as its judge.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">DM Summary</span>
+        <h2>Speciality distribution</h2>
+        <p>Delivery Managers by primary speciality — the mix behind the 21 cross-functional groups.</p>
+      </div>
+      <div class="spec-chart" id="spec-chart"></div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Delivery Managers</span>
+        <h2>The players</h2>
+        <p>Group assignments will be shared as soon as possible — groups can shape their strategies in advance of the workshop.</p>
+      </div>
+      <div class="search-box reveal">
+        <span>🔍</span>
+        <input type="search" id="dm-search" placeholder="Search by name or speciality…" aria-label="Search delivery managers">
+        <span class="count-pill" id="dm-count"></span>
+      </div>
+      <div class="people-grid" id="dm-grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Customers &amp; Judges</span>
+        <h2>The counterpart side</h2>
+        <p>Each receives a confidential Customer Briefing Pack — answer key, planted ambiguities, hidden constraints, and the live scope-change script. During presentations they score via Microsoft Form.</p>
+      </div>
+      <div class="people-grid" id="customer-grid"></div>
+      <div style="margin-top:40px" class="reveal">
+        <div class="callout">
+          <span class="c-icon">🧭</span>
+          <p><b>Facilitation desk</b> — timekeeping, submission folder, Form administration and floor coordination run from a central desk throughout the day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
