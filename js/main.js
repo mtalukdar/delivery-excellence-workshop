@@ -197,6 +197,7 @@
       grid.innerHTML = list.map((r, i) => `
         <article class="rfp-card" style="animation-delay:${Math.min(i * 45, 400)}ms">
           <div class="rfp-head">
+            <span class="rfp-icon ${CAT_TONES[r.filter] || "tone-lav"}">${r.icon}</span>
             <span class="rfp-id">${r.id}</span>
             <span class="rfp-cat ${CAT_TONES[r.filter] || "tone-lav"}">${r.category}</span>
           </div>
@@ -254,8 +255,13 @@
             <span class="rfp-id">${t.rfp}</span>
             <span class="rfp-cat ${CAT_TONES[t.rfp && (RFPS.find(r => r.id === t.rfp) || {}).filter] || "tone-lav"}">${t.platform}</span>
           </div>
-          <h3 class="team-name">${mark(t.name, q)}</h3>
-          <p class="team-slogan">${t.slogan}</p>
+          <div class="team-id">
+            <span class="team-logo grad-${(RFPS.find(r => r.id === t.rfp) || {}).filter || "web"}">${t.logo}</span>
+            <div>
+              <h3 class="team-name">${mark(t.name, q)}</h3>
+              <p class="team-slogan">${t.slogan}</p>
+            </div>
+          </div>
           <div class="team-customer">👤 Customer: <b>${mark(t.customer, q)}</b></div>
           <div class="team-members">
             ${t.members.map(m => `
@@ -339,6 +345,12 @@
   }
 
   /* ---------------- Participants page ---------------- */
+  /* Fun avatars pre-generated with DiceBear (big-smile for DMs, croodles for customers) */
+  function funAvatar(prefix, name) {
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    return "assets/avatars/" + prefix + "-" + slug + ".svg";
+  }
+
   const SPEC_COLORS = {
     "Web": "#7472c9", "Mobile": "#4fae8d", "SQA": "#c9a24b", "Mechanical": "#a54a68",
     "PC + Embedded": "#5b8fd4", "PC+Embed": "#5b8fd4", "ERP": "#b05f36", "SAP": "#b05f36",
@@ -375,9 +387,6 @@
       const input = document.getElementById("dm-search");
       const pill = document.getElementById("dm-count");
 
-      function initials(name) {
-        return name.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join("");
-      }
       function draw(q) {
         const query = (q || "").trim().toLowerCase();
         const list = DMS.filter(([name, spec]) =>
@@ -385,7 +394,9 @@
         pill.textContent = list.length + " DM" + (list.length === 1 ? "" : "s");
         dmGrid.innerHTML = list.map(([name, spec], i) => `
           <div class="person" style="animation-delay:${Math.min(i * 14, 350)}ms">
-            <span class="avatar" style="background:${SPEC_COLORS[spec] || "#7472c9"}">${initials(name)}</span>
+            <img class="avatar avatar-img" loading="lazy" alt="${name}"
+                 src="${funAvatar("dm", name)}"
+                 style="background:${SPEC_COLORS[spec] || "#7472c9"}">
             <span><span class="p-name">${name}</span><br><span class="p-spec">${spec === "PC+Embed" ? "PC + Embedded" : spec}</span></span>
           </div>`).join("") ||
           `<p style="grid-column:1/-1;text-align:center;color:var(--muted)">No delivery manager matches “${q}”.</p>`;
@@ -397,15 +408,13 @@
     const custGrid = document.getElementById("customer-grid");
     if (custGrid) {
       const palette = ["#7472c9", "#4fae8d", "#c9a24b", "#a54a68", "#5b8fd4", "#b05f36", "#3e9db0"];
-      custGrid.innerHTML = CUSTOMERS.map((name, i) => {
-        const tbc = name === "TBC";
-        const init = tbc ? "?" : name.split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join("");
-        return `
+      custGrid.innerHTML = CUSTOMERS.map((name, i) => `
           <div class="person" style="animation-delay:${Math.min(i * 25, 350)}ms">
-            <span class="avatar" style="background:${palette[i % palette.length]}">${init}</span>
-            <span><span class="p-name">${tbc ? "To be confirmed" : name}</span></span>
-          </div>`;
-      }).join("");
+            <img class="avatar avatar-img" loading="lazy" alt="${name}"
+                 src="${funAvatar("cust", name)}"
+                 style="background:${palette[i % palette.length]}">
+            <span><span class="p-name">${name}</span></span>
+          </div>`).join("");
     }
   }
 

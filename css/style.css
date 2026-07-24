@@ -322,6 +322,14 @@ img { max-width: 100%; }
 @keyframes cardIn { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
 .rfp-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
 .rfp-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rfp-icon {
+  flex: none; width: 42px; height: 42px; border-radius: 13px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.35rem; box-shadow: var(--shadow);
+  transition: transform .3s ease;
+}
+.rfp-card:hover .rfp-icon { transform: rotate(-8deg) scale(1.12); }
+.rfp-head .rfp-id { margin-right: auto; }
 .rfp-id {
   font-family: var(--font-display); font-weight: 700; font-size: .92rem; color: var(--primary);
   background: var(--primary-tint); padding: 5px 14px; border-radius: 10px;
@@ -342,7 +350,28 @@ img { max-width: 100%; }
   animation: cardIn .5s ease both;
 }
 .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
-.team-name { font-size: 1.14rem; letter-spacing: -0.01em; margin-top: 2px; }
+.team-id { display: flex; align-items: center; gap: 14px; margin-top: 2px; }
+.team-logo {
+  flex: none; width: 56px; height: 56px; border-radius: 18px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; box-shadow: 0 8px 18px rgba(56,54,145,.18);
+  transition: transform .35s ease;
+}
+.team-card:hover .team-logo { transform: rotate(8deg) scale(1.1); }
+.grad-web        { background: linear-gradient(135deg, #dceafb, #b7d3f3); }
+.grad-mobile     { background: linear-gradient(135deg, #d9f2e6, #aee0c9); }
+.grad-pc         { background: linear-gradient(135deg, #e6e4f7, #c9c5ec); }
+.grad-embedded   { background: linear-gradient(135deg, #fde4d4, #f6c6a8); }
+.grad-maintenance{ background: linear-gradient(135deg, #fdf0cd, #f4dd9b); }
+.grad-migration  { background: linear-gradient(135deg, #fde4d4, #f2cdc0); }
+.grad-qa         { background: linear-gradient(135deg, #d9f2e6, #b9e2d6); }
+.grad-mechanical { background: linear-gradient(135deg, #f7dfe7, #ecc0cf); }
+.grad-cloud      { background: linear-gradient(135deg, #d8f0f5, #b3dde8); }
+.grad-lowcode    { background: linear-gradient(135deg, #fdf0cd, #f7e0ac); }
+.grad-labo       { background: linear-gradient(135deg, #ffe8d6, #fcd0b0); }
+.grad-erp        { background: linear-gradient(135deg, #efe0d5, #ddc3ac); }
+.grad-engdata    { background: linear-gradient(135deg, #dde6f4, #bccbe8); }
+.team-name { font-size: 1.14rem; letter-spacing: -0.01em; }
 .team-slogan { font-size: .86rem; color: var(--muted); font-style: italic; }
 .team-customer {
   font-size: .84rem; color: var(--muted); background: var(--primary-tint);
@@ -479,6 +508,8 @@ img { max-width: 100%; }
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-weight: 700; font-size: .85rem; color: #fff;
 }
+.avatar-img { object-fit: cover; transition: transform .3s ease; }
+.person:hover .avatar-img { transform: scale(1.35) rotate(-6deg); }
 .person .p-name { font-weight: 600; font-size: .87rem; line-height: 1.3; }
 .person .p-spec { font-size: .72rem; color: var(--muted); font-weight: 600; letter-spacing: .03em; }
 
