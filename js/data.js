@@ -183,15 +183,15 @@ const DM_SUMMARY = [
   { speciality: "SQA",         count: 10, groups: 2 },
   { speciality: "ERP",         count:  5, groups: 1 },
   { speciality: "Cloud",       count:  5, groups: 1 },
-  { speciality: "Mechanical",  count: 10, groups: 2 },
-  { speciality: "Data",        count:  4, groups: 1 },
+  { speciality: "Mechanical",  count:  9, groups: 2 },
+  { speciality: "Data",        count:  5, groups: 1 },
   { speciality: "Hybrid",      count:  5, groups: 1 }
 ];
 
 /* ---------------- Delivery Managers (99, from 'DMs' sheet) ---------------- */
 const DMS = [
   ["Ikramul Hoque","Web"],["Jishnu Sardar","Mobile"],["Minhaz Karim","Web"],["Rezaur Rahman","Web"],
-  ["Ridoan Anik","Hybrid"],["Ahmed Asif","Web"],["Arup Das","Hybrid"],["Barkat Ullah","Mechanical"],
+  ["Ridoan Anik","Hybrid"],["Ahmed Asif","Web"],["Arup Das","Hybrid"],["Barkat Ullah","Data"],
   ["Giles Cornelius","Data"],["Jahirul Rajib","Web"],["Mushfiqur Rahman","SQA"],["Sam Dsilva","Data"],
   ["Shahariar Newaj","Data"],["Abdul Quadir","SQA"],["Illius Jamil","Hybrid"],["Jafrul Sadek","PC+Embed"],
   ["Mahmudul Khan","PC+Embed"],["Monowarul Islam","PC+Embed"],["Rafiqul Hasan","PC+Embed"],["Sumon Faruq","Web"],
@@ -228,7 +228,7 @@ const CUSTOMERS = [
 /* ---------------- Team Formation (20 teams, from 'Team Formation' + 'RFP Handling Team' sheets) ---------------- */
 const TEAMS = [
   {
-    rfp: "RFP-01", logo: "👃", category: "Web", platform: "Web application",
+    rfp: "RFP-01", logo: "🔭", category: "Web", platform: "Web application",
     name: "The Scope Creepers",
     slogan: "they smell uncontrolled scope from a mile away",
     customer: "Sajidul Huq",
