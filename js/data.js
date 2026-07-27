@@ -225,6 +225,39 @@ const CUSTOMERS = [
   "Dipankar Shovon","ABM Mahbub Rahman","Partha Sarker","Abdul Halim","Himadri"
 ];
 
+/* ---------------- Customer Evaluation (rules update, from 'Customer Evaluation.xlsx') ---------------- */
+const CUSTOMER_EVAL_CRITERIA = [
+  { n: 1, icon: "🗂️", title: "RfP Organization & Clarity", detail: "How well-organized was the RfP document itself? Structure, completeness and professional quality — the deliberate ambiguities don't count against it; rate whether it felt like a real, well-prepared client RfP." },
+  { n: 2, icon: "🎓", title: "Requirement Mastery (Consultant/BSE role)", detail: "Knew their RfP deeply; answers stayed consistent, no self-contradictions." },
+  { n: 3, icon: "⚖️", title: "Answer Quality & Fairness", detail: "Precise questions earned precise answers; vague questions got realistic vague ones — played the ambiguity game fairly without leaking or misleading." },
+  { n: 4, icon: "🤝", title: "Scope-Change & Negotiation (Customer role)", detail: "Injected the change request realistically and negotiated like a real client — firm but reasonable." },
+  { n: 5, icon: "🌱", title: "Learning Value", detail: "Interacting with this customer genuinely improved your real-world customer-handling skills." }
+];
+
+/* Team name → Microsoft Forms survey URL (access restricted to that team's members) */
+const CUSTOMER_EVAL_FORMS = {
+  "The Scope Creepers":              "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRURTdNTVpNMkxVNVI2MFZTMzlJVE5IMFpMUi4u",
+  "404: Free Work Not Found":        "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUOE9ITjdCSTg5MExLRVdQN1FBVzRZRVc3Mi4u",
+  "Ctrl+Alt+Deliver":                "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUOVk0N1NYUDVYRVBQVkdOU1ZRNTFMRFJZOS4u",
+  "Swipe Right to Sign Off":         "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUREhJUUZNMzJCRUhPRVNJTkNaU0UzRzlHNi4u",
+  "Push Notification Nation":        "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRURU1VTjE3SElWRFAyWjcyNUlKVUpFT0FYNS4u",
+  "The App-solute Owners":           "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUREFUSzYzV01LUVhBOVY1S1c5RFRZT0UyQS4u",
+  "Bare Metal Bidders":              "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUOTFISVVKUzhXSjdYTEtSQlkzN1E0NkdLVi4u",
+  "The Ctrl Freaks":                 "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUNzExWExRVEc2VUs3SUZJUUxVQjVRREtNTS4u",
+  "React & Sign-Off":                "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUNDAySUtGRlJSMEtZM1pMRFJGTTNEU1VTNC4u",
+  "The Baseline Defenders":          "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUM002REdRUkFYR0k0OFg2NURLNDVRMlBBQS4u",
+  "Sixty-Seven Shades of Ownership": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUMUZINUFKN1BJS0UwMUtWMUVBMk5DVVcwUS4u",
+  "Not My Bug Anymore":              "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRURDhKRUtaSUg1SDlFQk43TE5SSDE4R0NJWC4u",
+  "Test Case Closed":                "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUN0o0N1JNSDNIN0ZDSVZJUFJNRlc4SEZQMS4u",
+  "The Tolerance Negotiators":       "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUQldHVzNETzY5S080NU1CQjFSQ1NRQk1XSC4u",
+  "Torque of the Town":              "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUNEpIQVYxVE8xVU5CUVhTS0s2VUVZTDJXUC4u",
+  "Reign, No Rain":                  "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUQk9LTExESTJORExaQVZDNjFPMDdIWUY1Ny4u",
+  "Full-Stack, Full Margin":         "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUNEVPODNaQVdLT0JLSENZMEhWU0RUTkNQOC4u",
+  "Jack of All Stacks":              "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUQ0VSTkpaVVowUUo2MDdHTFMwRTZNSzVZMS4u",
+  "ERP-solutely Governed":           "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUNEpLU0VUNlpPWkZUM0pBNzRDNzJJQ1pTRi4u",
+  "Query Everything":                "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUQzRBVUhFT045VTY3U0RWUjJNQVhKMVZGVi4u"
+};
+
 /* ---------------- Team Formation (20 teams, from 'Team Formation' + 'RFP Handling Team' sheets) ---------------- */
 const TEAMS = [
   {

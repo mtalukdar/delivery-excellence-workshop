@@ -10,7 +10,8 @@
     { href: "agenda.html",       label: "Agenda" },
     { href: "rfp-catalog.html",  label: "RfP Catalog" },
     { href: "governance.html",   label: "Governance" },
-    { href: "evaluation.html",   label: "Evaluation" },
+    { href: "evaluation.html",   label: "Team Evaluation" },
+    { href: "customer-evaluation.html", label: "Customer Evaluation" },
     { href: "participants.html", label: "Participants" },
     { href: "rfp-details.html",  label: "RfP Details", soon: true },
     { href: "teams.html",        label: "Teams & RfP" }
@@ -72,7 +73,8 @@
               <li><a href="agenda.html">Agenda</a></li>
               <li><a href="rfp-catalog.html">RfP Catalog</a></li>
               <li><a href="governance.html">Governance &amp; Artifacts</a></li>
-              <li><a href="evaluation.html">Evaluation &amp; Rules</a></li>
+              <li><a href="evaluation.html">Team Evaluation &amp; Rules</a></li>
+              <li><a href="customer-evaluation.html">Customer Evaluation</a></li>
             </ul>
           </div>
           <div>
@@ -344,6 +346,56 @@
     }
   }
 
+  /* ---------------- Customer Evaluation page ---------------- */
+  function renderCustomerEval() {
+    const critWrap = document.getElementById("cust-eval-criteria");
+    if (critWrap) {
+      const bubbles = ["lav", "sky", "mint", "peach", "gold"];
+      critWrap.innerHTML = CUSTOMER_EVAL_CRITERIA.map((c, i) => `
+        <div class="card reveal reveal-d${(i % 4) + 1}">
+          <div class="icon-bubble bubble-${bubbles[i % bubbles.length]}">${c.icon}</div>
+          <h3>${c.n}. ${c.title} <span class="crit-marks">5 marks</span></h3>
+          <p>${c.detail}</p>
+        </div>`).join("");
+    }
+
+    const formGrid = document.getElementById("eval-form-grid");
+    if (formGrid) {
+      const input = document.getElementById("eval-search");
+      const pill = document.getElementById("eval-count");
+
+      function draw() {
+        const q = (input && input.value || "").trim().toLowerCase();
+        const list = TEAMS.filter(t =>
+          !q ||
+          t.name.toLowerCase().includes(q) ||
+          t.customer.toLowerCase().includes(q) ||
+          t.rfp.toLowerCase().includes(q) ||
+          t.members.some(m => m.toLowerCase().includes(q)));
+        if (pill) pill.textContent = list.length + " team" + (list.length === 1 ? "" : "s");
+        formGrid.innerHTML = list.map((t, i) => {
+          const url = CUSTOMER_EVAL_FORMS[t.name];
+          return `
+          <article class="eval-team" style="animation-delay:${Math.min(i * 40, 400)}ms">
+            <div class="eval-team-top">
+              <span class="team-logo grad-${(RFPS.find(r => r.id === t.rfp) || {}).filter || "web"}">${t.logo}</span>
+              <div>
+                <h3 class="team-name">${t.name}</h3>
+                <div class="eval-team-meta">${t.rfp} · Customer: <b>${t.customer}</b></div>
+              </div>
+            </div>
+            ${url
+              ? `<a class="btn btn-primary eval-btn" href="${url}" target="_blank" rel="noopener">Evaluate your customer ↗</a>`
+              : `<span class="eval-btn eval-btn-soon">Form link coming soon</span>`}
+          </article>`;
+        }).join("") ||
+          `<p style="grid-column:1/-1;text-align:center;color:var(--muted)">No team matches “${input.value}”.</p>`;
+      }
+      draw();
+      if (input) input.addEventListener("input", draw);
+    }
+  }
+
   /* ---------------- Participants page ---------------- */
   /* Fun avatars pre-generated with DiceBear (big-smile for DMs, croodles for customers) */
   function funAvatar(prefix, name) {
@@ -446,6 +498,7 @@
     renderTeams();
     renderGovernance();
     renderEvaluation();
+    renderCustomerEval();
     renderParticipants();
     initCountdown();
     initTyping();
