@@ -14,7 +14,8 @@
     { href: "customer-evaluation.html", label: "Customer Evaluation" },
     { href: "participants.html", label: "Participants" },
     { href: "rfp-details.html",  label: "RfP Details", soon: true },
-    { href: "teams.html",        label: "Teams & RfP" }
+    { href: "teams.html",        label: "Teams & RfP" },
+    { href: "workshop-evaluation.html", label: "Workshop Evaluation" }
   ];
 
   const current = document.body.dataset.page || "index.html";
@@ -83,6 +84,7 @@
               <li><a href="participants.html">Participants</a></li>
               <li><a href="rfp-details.html">RfP Details</a></li>
               <li><a href="teams.html">Teams &amp; RfP</a></li>
+              <li><a href="workshop-evaluation.html">Workshop Evaluation</a></li>
             </ul>
           </div>
         </div>
