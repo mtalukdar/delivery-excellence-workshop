@@ -60,7 +60,7 @@ img { max-width: 100%; }
 .site-header.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 24px rgba(56,54,145,.06); }
 .site-header .container { width: min(1400px, 96%); }
 
-.nav-wrap { display: flex; align-items: center; justify-content: flex-start; padding: 14px 0; gap: 20px; flex-wrap: nowrap; }
+.nav-wrap { display: flex; align-items: center; justify-content: flex-start; padding: 14px 0; gap: 30px; flex-wrap: nowrap; }
 
 .brand { display: flex; align-items: center; gap: 12px; flex: none; }
 .brand img { height: 38px; width: auto; transition: transform .4s ease; }
