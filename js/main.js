@@ -10,11 +10,11 @@
     { href: "agenda.html",       label: "Agenda" },
     { href: "rfp-catalog.html",  label: "RfP Catalog" },
     { href: "governance.html",   label: "Governance" },
-    { href: "evaluation.html",   label: "Team Evaluation" },
-    { href: "customer-evaluation.html", label: "Customer Evaluation" },
     { href: "participants.html", label: "Participants" },
     { href: "rfp-details.html",  label: "RfP Details", soon: true },
     { href: "teams.html",        label: "Teams & RfP" },
+    { href: "evaluation.html",   label: "Team Evaluation" },
+    { href: "customer-evaluation.html", label: "Customer Evaluation" },
     { href: "workshop-evaluation.html", label: "Workshop Evaluation" }
   ];
 
