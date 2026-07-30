@@ -356,14 +356,14 @@ const TEAMS = [
     name: "The Tolerance Negotiators",
     slogan: "precise to ±0.01, flexible on nothing else",
     customer: "Azizul Islam",
-    members: ["Mdmahadi Hasan", "Md Anamul Hasan", "Shibashish Saha", "Ali Mollah", "Samirul Islam"]
+    members: ["Mdmahadi Hasan", "Md Anamul Hasan", "Ali Mollah", "Samirul Islam"]
   },
   {
     rfp: "RFP-15", logo: "🔧", category: "Mechanical", platform: "Mechanical design",
     name: "Torque of the Town",
     slogan: "applying exactly the right pressure on scope",
     customer: "Sayeedul Islam",
-    members: ["Md Kamrul Hasan", "Muktadir Hossain", "Rakibul Islam", "Omar Faruq"]
+    members: ["Md Kamrul Hasan", "Muktadir Hossain", "Omar Faruq", "Shibashish Saha"]
   },
   {
     rfp: "RFP-16", logo: "🌤️", category: "Cloud", platform: "Cloud infra & SecOps",
@@ -400,4 +400,27 @@ const TEAMS = [
     customer: "Susanta Kumar Saha",
     members: ["Shahariar Newaj", "Debashis Bhattacharjee", "Giles Cornelius", "Sam Dsilva", "Barkat Ullah"]
   }
+];
+/* ---------------- RfP files (published packs, from 'RfP' folder) ---------------- */
+const RFP_FILES = [
+  { id: "RFP-01", project: "Mizuho SalaryDirect", file: "assets/rfp/RFP-01_Mizuho_SalaryDirect_v1.0.0.docx", download: "[RFP-01][Sajidul Huq][The Scope Creepers] Mizuho SalaryDirect - v1.0.0.docx", format: "DOCX", size: "36 KB" },
+  { id: "RFP-02", project: "BidHub Auction Marketplace", file: "assets/rfp/RFP-02_BidHub_Auction_Marketplace_v1.0.0.docx", download: "[RFP-02][Shahjalal Hossain][404 - Free Work Not Found] BidHub Auction Marketplace - v1.0.0.docx", format: "DOCX", size: "25 KB" },
+  { id: "RFP-03", project: "Midori-Home", file: "assets/rfp/RFP-03_Midori-Home_v1.0.0.docx", download: "[RFP-03][Abdul Halim][Ctrl+Alt+Deliver] Midori-Home - v1.0.0.docx", format: "DOCX", size: "56 KB" },
+  { id: "RFP-04", project: "NovaCart Mobile", file: "assets/rfp/RFP-04_NovaCart_Mobile_v1.0.0.docx", download: "[RFP-04][Dewan Shamsul Alam][Swipe Right to Sign Off] NovaCart Mobile - v1.0.0.docx", format: "DOCX", size: "48 KB" },
+  { id: "RFP-05", project: "Astra Mobile Pack", file: "assets/rfp/RFP-05_Astra_Mobile_Pack_v1.0.0.docx", download: "[RFP-05][Mostafizur Rahman][Push Notification Nation] Astra Mobile Pack - v1.0.0.docx", format: "DOCX", size: "42 KB" },
+  { id: "RFP-06", project: "SolaraLife", file: "assets/rfp/RFP-06_SolaraLife_v1.0.0.docx", download: "[RFP-06][Mamun Ahmed Khan][The App-solute Owners] SolaraLife - v1.0.0.docx", format: "DOCX", size: "43 KB" },
+  { id: "RFP-07", project: "Kitagawa Battery", file: "assets/rfp/RFP-07_Kitagawa_Battery_v1.0.0.docx", download: "[RFP-07][Dipankar Das Shovon][Bare Metal Bidders] Kitagawa Battery - v1.0.0.docx", format: "DOCX", size: "25 KB" },
+  { id: "RFP-08", project: "Hoshino Sight 8", file: "assets/rfp/RFP-08_Hoshino_Sight_8_v1.0.0.docx", download: "[RFP-08][Iftekhar Uddin Ahmed][The Ctrl Freaks] Hoshino Sight 8 - v1.0.0.docx", format: "DOCX", size: "42 KB" },
+  { id: "RFP-09", project: "FlyerBank Direct AMS", file: "assets/rfp/RFP-09_FlyerBank_Direct_AMS_v1.0.0.docx", download: "[RFP-09][Shaiful Islam][React & Sign-Off] FlyerBank Direct AMS - v1.0.0.docx", format: "DOCX", size: "1.1 MB" },
+  { id: "RFP-10", project: "Wakaba", file: "assets/rfp/RFP-10_Wakaba_v1.0.0.docx", download: "[RFP-10][Partha Pratim Sarkar][The Baseline Defenders] Wakaba - v1.0.0.docx", format: "DOCX", size: "65 KB" },
+  { id: "RFP-11", project: "Legacy-Migration Suzuran SPL StockOne", file: "assets/rfp/RFP-11_Legacy-Migration_Suzuran_SPL_StockOne_v1.0.0.docx", download: "[RFP-11][ABM Mahbubur Rahman][Sixty-Seven Shades of Ownership] Legacy-Migration Suzuran SPL StockOne - v1.0.0.docx", format: "DOCX", size: "45 KB" },
+  { id: "RFP-12", project: "Nexus-Telecom QA-PartneR", file: "assets/rfp/RFP-12_Nexus-Telecom_QA-PartneR_v1.0.0.docx", download: "[RFP-12][Himadri Mondol][Not My Bug Anymore] Nexus-Telecom QA-PartneR - v1.0.0.docx", format: "DOCX", size: "28 KB" },
+  { id: "RFP-13", project: "Migration-QA", file: "assets/rfp/RFP-13_Migration-QA_v1.0.0.pdf", download: "[RFP-13][Nadim Hossain][Test Case Closed] Migration-QA - v1.0.0.pdf", format: "PDF", size: "428 KB" },
+  { id: "RFP-14", project: "NORDTEK OY NT-2026-KOSKI2-BD", file: "assets/rfp/RFP-14_NORDTEK_OY_NT-2026-KOSKI2-BD_v1.0.0.docx", download: "[RFP-14][Azizul Islam][The Tolerance Negotiators] NORDTEK OY NT-2026-KOSKI2-BD - v1.0.0.docx", format: "DOCX", size: "417 KB" },
+  { id: "RFP-15", project: "Nordkaross VIKEN", file: "assets/rfp/RFP-15_Nordkaross_VIKEN_v1.0.0.pdf", download: "[RFP-15][Sayeedul Islam][Torque of the Town] Nordkaross VIKEN - v1.0.0.pdf", format: "PDF", size: "1.3 MB" },
+  { id: "RFP-16", project: "Infrastructure SecOps", file: "assets/rfp/RFP-16_Infrastructure_SecOps_v1.0.0.docx", download: "[RFP-16][Amir Hossain][Reign, No Rain] Infrastructure SecOps - v1.0.0.docx", format: "DOCX", size: "39 KB" },
+  { id: "RFP-17", project: "ABC Corporation Warehouse Management Platform", file: "assets/rfp/RFP-17_ABC_Corporation_Warehouse_Management_Platform_v1.0.0.docx", download: "[RFP-17][Homayun Kabir][Full-Stack, Full Margin] ABC Corporation Warehouse Management Platform - v1.0.0.docx", format: "DOCX", size: "46 KB" },
+  { id: "RFP-18", project: "JNGC", file: "assets/rfp/RFP-18_JNGC_v1.0.0.docx", download: "[RFP-18][Minhajur Rahman][Jack of All Stacks] JNGC - v1.0.0.docx", format: "DOCX", size: "52 KB" },
+  { id: "RFP-19", project: "TMart OneStock WMS", file: "assets/rfp/RFP-19_TMart_OneStock_WMS_v1.0.0.docx", download: "[RFP-19][Tareque Arefin][ERP-solutely Governed] TMart OneStock WMS - v1.0.0.docx", format: "DOCX", size: "44 KB" },
+  { id: "RFP-20", project: "TC Data Migration", file: "assets/rfp/RFP-20_TC_Data_Migration_v1.0.0.docx", download: "[RFP-20][Susanta Kumar Saha][Query Everything] TC Data Migration - v1.0.0.docx", format: "DOCX", size: "320 KB" }
 ];

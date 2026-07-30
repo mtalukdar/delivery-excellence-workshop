@@ -11,7 +11,7 @@
     { href: "rfp-catalog.html",  label: "RfP Catalog" },
     { href: "governance.html",   label: "Governance" },
     { href: "participants.html", label: "Participants" },
-    { href: "rfp-details.html",  label: "RfP Details", soon: true },
+    { href: "rfp-details.html",  label: "RfP Details" },
     { href: "teams.html",        label: "Teams & RfP" },
     { href: "evaluation.html",   label: "Team Evaluation" },
     { href: "customer-evaluation.html", label: "Customer Evaluation" },
@@ -348,6 +348,46 @@
     }
   }
 
+  /* ---------------- RfP Details page ---------------- */
+  function renderRfpDetails() {
+    const grid = document.getElementById("rfp-file-grid");
+    if (!grid) return;
+    const input = document.getElementById("rfp-file-search");
+    const pill = document.getElementById("rfp-file-count");
+
+    function draw() {
+      const q = (input && input.value || "").trim().toLowerCase();
+      const list = RFP_FILES.filter(f => {
+        const team = TEAMS.find(t => t.rfp === f.id) || {};
+        return !q ||
+          f.id.toLowerCase().includes(q) ||
+          f.project.toLowerCase().includes(q) ||
+          (team.name || "").toLowerCase().includes(q) ||
+          (team.customer || "").toLowerCase().includes(q) ||
+          (team.members || []).some(m => m.toLowerCase().includes(q));
+      });
+      if (pill) pill.textContent = list.length + " RfP" + (list.length === 1 ? "" : "s");
+      grid.innerHTML = list.map((f, i) => {
+        const team = TEAMS.find(t => t.rfp === f.id) || {};
+        const rfp = RFPS.find(r => r.id === f.id) || {};
+        return `
+        <article class="eval-team" style="animation-delay:${Math.min(i * 40, 400)}ms">
+          <div class="eval-team-top">
+            <span class="team-logo grad-${rfp.filter || "web"}">${team.logo || "📦"}</span>
+            <div>
+              <h3 class="team-name">${f.id} · ${f.project}</h3>
+              <div class="eval-team-meta">Team: <b>${team.name || "—"}</b> · Customer: <b>${team.customer || "—"}</b></div>
+            </div>
+          </div>
+          <a class="btn btn-primary eval-btn" href="${f.file}" download="${f.download.replace(/"/g, "&quot;")}">⬇ Download RfP <span class="sample-size">${f.format} · ${f.size}</span></a>
+        </article>`;
+      }).join("") ||
+        `<p style="grid-column:1/-1;text-align:center;color:var(--muted)">No RfP matches “${input.value}”.</p>`;
+    }
+    draw();
+    if (input) input.addEventListener("input", draw);
+  }
+
   /* ---------------- Customer Evaluation page ---------------- */
   function renderCustomerEval() {
     const critWrap = document.getElementById("cust-eval-criteria");
@@ -500,6 +540,7 @@
     renderTeams();
     renderGovernance();
     renderEvaluation();
+    renderRfpDetails();
     renderCustomerEval();
     renderParticipants();
     initCountdown();

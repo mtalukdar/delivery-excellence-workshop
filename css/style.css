@@ -684,3 +684,25 @@ img { max-width: 100%; }
 }
 .vote-cta { text-align: center; margin-top: 8px; }
 .vote-cta .btn { font-size: 1.05rem; padding: 16px 38px; }
+
+/* ---------------- Rate card table (RfP Details) ---------------- */
+.rate-wrap {
+  overflow-x: auto; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 10px;
+}
+.rate-table { width: 100%; border-collapse: collapse; min-width: 680px; font-size: .88rem; }
+.rate-table th {
+  font-family: var(--font-display); font-size: .74rem; letter-spacing: .08em;
+  text-transform: uppercase; color: #fff; background: var(--primary);
+  padding: 13px 16px; text-align: left; white-space: nowrap;
+}
+.rate-table th:first-child { border-top-left-radius: 12px; }
+.rate-table th:last-child { border-top-right-radius: 12px; }
+.rate-table td { padding: 10px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.rate-table td[rowspan] {
+  font-weight: 600; color: var(--ink); background: var(--primary-tint);
+  border-right: 1px solid var(--line);
+}
+.rate-table td[rowspan] + td[rowspan] { font-weight: 400; color: var(--muted); background: var(--bg-alt); font-size: .82rem; }
+.rate-table tbody tr:hover td:not([rowspan]) { background: var(--lav); }
+.rate-table td:last-child { font-family: var(--font-display); font-weight: 700; color: var(--primary); }
