@@ -389,40 +389,55 @@
     /* ---- Submission index (one row per artifact, team spans its rows) ---- */
     const table = document.getElementById("upload-matrix");
     if (table) {
-      const byRfp = {};
-      (typeof UPLOAD_INDEX !== "undefined" ? UPLOAD_INDEX : []).forEach(e => { byRfp[e.rfp] = e.artifacts || {}; });
+      function drawMatrix(indexArr, builtStamp) {
+        const byRfp = {};
+        (indexArr || []).forEach(e => { byRfp[e.rfp] = e.artifacts || {}; });
 
-      const head = `<thead><tr>
-        <th class="um-team">RfP · Customer · Team</th>
-        <th>Artifact</th>
-        <th>File</th>
-        <th>Uploaded</th>
-      </tr></thead>`;
+        const head = `<thead><tr>
+          <th class="um-team">RfP · Customer · Team</th>
+          <th>Artifact</th>
+          <th>File</th>
+          <th>Uploaded</th>
+        </tr></thead>`;
 
-      const rows = TEAMS.map(t => {
-        const arts = byRfp[t.rfp] || {};
-        return ARTIFACT_COLUMNS.map((c, i) => {
-          const a = arts[String(i + 1)];
-          const teamCell = i === 0
-            ? `<td class="um-team" rowspan="${ARTIFACT_COLUMNS.length}"><b>${t.rfp}</b><span>${t.customer}</span><span>${t.name}</span></td>`
-            : "";
-          return `<tr class="${i === 0 ? "um-first" : ""}${a ? "" : " um-missing"}">
-            ${teamCell}
-            <td class="um-art"><span class="um-n">${i + 1}.</span> ${c}</td>
-            ${a
-              ? `<td class="um-hit"><a href="${a.url}" download title="${a.name.replace(/"/g, "&quot;")}">📄 ${a.name}</a></td><td class="um-time-cell">${a.time}</td>`
-              : `<td class="um-empty">—</td><td class="um-empty">—</td>`}
-          </tr>`;
+        const rows = TEAMS.map(t => {
+          const arts = byRfp[t.rfp] || {};
+          return ARTIFACT_COLUMNS.map((c, i) => {
+            const a = arts[String(i + 1)];
+            const teamCell = i === 0
+              ? `<td class="um-team" rowspan="${ARTIFACT_COLUMNS.length}"><b>${t.rfp}</b><span>${t.customer}</span><span>${t.name}</span></td>`
+              : "";
+            return `<tr class="${i === 0 ? "um-first" : ""}${a ? "" : " um-missing"}">
+              ${teamCell}
+              <td class="um-art"><span class="um-n">${i + 1}.</span> ${c}</td>
+              ${a
+                ? `<td class="um-hit"><a href="${a.url}" download title="${a.name.replace(/"/g, "&quot;")}">📄 ${a.name}</a></td><td class="um-time-cell">${a.time}</td>`
+                : `<td class="um-empty">—</td><td class="um-empty">—</td>`}
+            </tr>`;
+          }).join("");
         }).join("");
-      }).join("");
 
-      table.innerHTML = head + `<tbody>${rows}</tbody>`;
+        table.innerHTML = head + `<tbody>${rows}</tbody>`;
 
-      const built = document.getElementById("index-built");
-      if (built && typeof UPLOAD_INDEX_BUILT !== "undefined" && UPLOAD_INDEX_BUILT) {
-        built.querySelector("b").textContent = UPLOAD_INDEX_BUILT + " (BST)";
-        built.hidden = false;
+        const built = document.getElementById("index-built");
+        if (built && builtStamp) {
+          built.querySelector("b").textContent = builtStamp + " (BST)";
+          built.hidden = false;
+        }
       }
+
+      drawMatrix(typeof UPLOAD_INDEX !== "undefined" ? UPLOAD_INDEX : [],
+                 typeof UPLOAD_INDEX_BUILT !== "undefined" ? UPLOAD_INDEX_BUILT : null);
+
+      /* Re-fetch the index past every cache so each reload shows the newest build */
+      fetch("js/uploads-index.js?fresh=" + Date.now(), { cache: "no-store" })
+        .then(r => r.ok ? r.text() : Promise.reject())
+        .then(src => {
+          const idx = src.match(/const UPLOAD_INDEX = (\[[\s\S]*?\]);/);
+          const stamp = src.match(/const UPLOAD_INDEX_BUILT = "([^"]*)";/);
+          if (idx) drawMatrix(JSON.parse(idx[1]), stamp ? stamp[1] : null);
+        })
+        .catch(() => {});
     }
   }
 
