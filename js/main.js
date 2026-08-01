@@ -417,6 +417,12 @@
       }).join("");
 
       table.innerHTML = head + `<tbody>${rows}</tbody>`;
+
+      const built = document.getElementById("index-built");
+      if (built && typeof UPLOAD_INDEX_BUILT !== "undefined" && UPLOAD_INDEX_BUILT) {
+        built.querySelector("b").textContent = UPLOAD_INDEX_BUILT + " (BST)";
+        built.hidden = false;
+      }
     }
   }
 
