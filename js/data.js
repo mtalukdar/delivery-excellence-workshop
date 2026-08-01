@@ -260,9 +260,9 @@ const CUSTOMER_EVAL_FORMS = {
 
 /* ---------------- Artifact uploads (submission desk) ---------------- */
 const UPLOAD = {
-  /* Paste the shared upload folder link (OneDrive / SharePoint) here.
-     Leave empty to show the "link coming soon" state. */
-  url: "",
+  /* Public Nextcloud share — used for uploads AND as the base for the
+     download links in the submission index. */
+  url: "https://nextcloud.bjitgroup.com/index.php/s/qSywfyXqQgxreRj",
   deadlineISO: "2026-08-01T14:00:00+06:00",
   deadlineLabel: "1 August 2026 · 2:00 PM (Bangladesh Standard Time)"
 };
