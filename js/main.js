@@ -367,7 +367,7 @@
 
     function drawCta(open) {
       if (!open) {
-        cta.innerHTML = `<span class="eval-btn-soon upload-closed">🔒 Uploads closed at 3:00 PM — the pack you submitted is the pack that gets judged.</span>`;
+        cta.innerHTML = `<span class="eval-btn-soon upload-closed">🔒 Uploads closed at 4:00 PM — the pack you submitted is the pack that gets judged.</span>`;
         return;
       }
       cta.innerHTML = UPLOAD.url
