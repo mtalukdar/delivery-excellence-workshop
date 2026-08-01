@@ -263,8 +263,8 @@ const UPLOAD = {
   /* Public Nextcloud share — used for uploads AND as the base for the
      download links in the submission index. */
   url: "https://nextcloud.bjitgroup.com/index.php/s/qSywfyXqQgxreRj",
-  deadlineISO: "2026-08-01T16:00:00+06:00",
-  deadlineLabel: "1 August 2026 · 4:00 PM (Bangladesh Standard Time)"
+  deadlineISO: "2026-08-01T16:30:00+06:00",
+  deadlineLabel: "1 August 2026 · 4:30 PM (Bangladesh Standard Time)"
 };
 
 /* Short column labels for the upload index — one per mandatory artifact (same order as ARTIFACTS) */
