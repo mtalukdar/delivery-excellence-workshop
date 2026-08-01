@@ -13,6 +13,7 @@
     { href: "participants.html", label: "Participants" },
     { href: "rfp-details.html",  label: "RfP Details" },
     { href: "teams.html",        label: "Teams & RfP" },
+    { href: "upload-artifacts.html", label: "Upload Artifacts" },
     { href: "evaluation.html",   label: "Team Evaluation" },
     { href: "customer-evaluation.html", label: "Customer Evaluation" },
     { href: "workshop-evaluation.html", label: "Workshop Evaluation" }
@@ -84,6 +85,7 @@
               <li><a href="participants.html">Participants</a></li>
               <li><a href="rfp-details.html">RfP Details</a></li>
               <li><a href="teams.html">Teams &amp; RfP</a></li>
+              <li><a href="upload-artifacts.html">Upload Artifacts</a></li>
               <li><a href="workshop-evaluation.html">Workshop Evaluation</a></li>
             </ul>
           </div>
@@ -348,6 +350,71 @@
     }
   }
 
+  /* ---------------- Upload Artifacts page ---------------- */
+  function renderUploadArtifacts() {
+    const cta = document.getElementById("upload-cta");
+    if (!cta) return;
+
+    const deadline = new Date(UPLOAD.deadlineISO).getTime();
+    const box = document.getElementById("upload-countdown");
+
+    function drawCta(open) {
+      if (!open) {
+        cta.innerHTML = `<span class="eval-btn-soon upload-closed">🔒 Uploads closed at 2:00 PM — the pack you submitted is the pack that gets judged.</span>`;
+        return;
+      }
+      cta.innerHTML = UPLOAD.url
+        ? `<a class="btn btn-primary" id="upload-btn" href="${UPLOAD.url}" target="_blank" rel="noopener">📤 Open the Upload Folder ↗</a>`
+        : `<span class="eval-btn-soon">📤 The upload folder link will be activated here shortly</span>`;
+    }
+
+    function tick() {
+      const diff = deadline - Date.now();
+      if (diff <= 0) {
+        box.innerHTML = `<div class="countdown-live" style="background:var(--rose);color:var(--rose-ink)">⛔ The submission window is closed</div>`;
+        drawCta(false);
+        clearInterval(timer);
+        return;
+      }
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor(diff / 60000) % 60;
+      const s = Math.floor(diff / 1000) % 60;
+      box.innerHTML = [[h, "Hours"], [m, "Minutes"], [s, "Seconds"]].map(([v, l]) =>
+        `<div class="count-cell"><b>${String(v).padStart(2, "0")}</b><span>${l}</span></div>`).join("");
+    }
+    drawCta(Date.now() < deadline);
+    tick();
+    const timer = setInterval(tick, 1000);
+
+    /* ---- Submission index matrix ---- */
+    const table = document.getElementById("upload-matrix");
+    if (table) {
+      const byRfp = {};
+      (typeof UPLOAD_INDEX !== "undefined" ? UPLOAD_INDEX : []).forEach(e => { byRfp[e.rfp] = e.artifacts || {}; });
+
+      const head = `<thead><tr>
+        <th class="um-team">RfP · Customer · Team</th>
+        ${ARTIFACT_COLUMNS.map((c, i) => `<th><span class="um-n">${i + 1}</span>${c}</th>`).join("")}
+      </tr></thead>`;
+
+      const rows = TEAMS.map(t => {
+        const arts = byRfp[t.rfp] || {};
+        const cells = ARTIFACT_COLUMNS.map((c, i) => {
+          const a = arts[String(i + 1)];
+          return a
+            ? `<td class="um-hit"><a href="${a.url}" download title="${a.name.replace(/"/g, "&quot;")}">📄 File</a><span class="um-time">${a.time}</span></td>`
+            : `<td class="um-empty">—</td>`;
+        }).join("");
+        return `<tr>
+          <td class="um-team"><b>${t.rfp}</b><span>${t.customer}</span><span>${t.name}</span></td>
+          ${cells}
+        </tr>`;
+      }).join("");
+
+      table.innerHTML = head + `<tbody>${rows}</tbody>`;
+    }
+  }
+
   /* ---------------- RfP Details page ---------------- */
   function renderRfpDetails() {
     const grid = document.getElementById("rfp-file-grid");
@@ -541,6 +608,7 @@
     renderGovernance();
     renderEvaluation();
     renderRfpDetails();
+    renderUploadArtifacts();
     renderCustomerEval();
     renderParticipants();
     initCountdown();

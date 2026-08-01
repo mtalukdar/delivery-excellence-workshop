@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Artifacts · Delivery Excellence Workshop · BJIT</title>
+  <meta name="description" content="Submission desk for the BJIT Delivery Excellence Workshop — upload your 12 artifacts before 2:00 PM, and track every team's submissions in the live index.">
+  <link rel="icon" type="image/svg+xml" href="assets/bjit-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="upload-artifacts.html">
+
+  <section class="page-hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-3"></div>
+    <div class="container" style="position:relative;z-index:2">
+      <span class="eyebrow">Submission Desk</span>
+      <h1>Upload Artifacts</h1>
+      <p>One folder, all teams, every artifact. Upload your complete pack — the Technical Proposal and all supporting artifacts — before the clock runs out. <b>Late = flagged to the judges.</b></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Before You Upload</span>
+        <h2>The rules of the folder</h2>
+      </div>
+      <div class="card-grid">
+        <div class="card reveal reveal-d1">
+          <div class="icon-bubble bubble-peach">⏰</div>
+          <h3>Deadline: 2:00 PM sharp</h3>
+          <p>Uploads close at <b>2:00 PM Bangladesh Standard Time, 1 August 2026</b>. After that the upload link stops working — no exceptions, no extensions.</p>
+        </div>
+        <div class="card reveal reveal-d2">
+          <div class="icon-bubble bubble-sky">🏷️</div>
+          <h3>Name your files properly</h3>
+          <p>Every file follows this convention:<br><code class="name-convention">[RFP XX][Customer Name][Team Name] Project Name V-x.y.z</code><br>Files that can't be traced back to a team can't be scored.</p>
+        </div>
+        <div class="card reveal reveal-d3">
+          <div class="icon-bubble bubble-mint">📁</div>
+          <h3>One folder for everyone</h3>
+          <p>All 20 teams upload into the same folder — multiple files are welcome, no need to zip anything. Keep each artifact as its own file.</p>
+        </div>
+        <div class="card reveal reveal-d4">
+          <div class="icon-bubble bubble-lav">🔁</div>
+          <h3>Same name = replaced</h3>
+          <p>Uploading a file with the same name <b>replaces the older copy</b> — there is no version control. If versions differ (V-1.0.1 vs V-1.0.0), only the latest lands in the index.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The Clock Is Running</span>
+        <h2>Submit your pack</h2>
+        <p id="upload-deadline-note">Uploads close at <b>2:00 PM (BST) · 1 August 2026</b>.</p>
+      </div>
+      <div class="countdown" id="upload-countdown" aria-label="Countdown to the upload deadline"></div>
+      <div class="vote-cta reveal" id="upload-cta" style="margin-top:34px"></div>
+      <div style="margin-top:44px" class="reveal">
+        <div class="callout">
+          <span class="c-icon">🧾</span>
+          <p><b>Twelve artifacts, one pack.</b> The submission pack is the 12 mandatory artifacts on the <a href="governance.html">Governance page</a> — Requirement Package through Complete Technical Proposal. Upload them all before the freeze.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Live Submission Index</span>
+        <h2>Who has submitted what</h2>
+        <p>Every team's uploaded artifacts, latest version only, with the upload time under each file. The index refreshes as packs are indexed — empty cells mean nothing has landed yet.</p>
+      </div>
+      <div class="upload-matrix-wrap reveal">
+        <table class="upload-matrix" id="upload-matrix"></table>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/data.js"></script>
+  <script src="js/uploads-index.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -706,3 +706,42 @@ img { max-width: 100%; }
 .rate-table td[rowspan] + td[rowspan] { font-weight: 400; color: var(--muted); background: var(--bg-alt); font-size: .82rem; }
 .rate-table tbody tr:hover td:not([rowspan]) { background: var(--lav); }
 .rate-table td:last-child { font-family: var(--font-display); font-weight: 700; color: var(--primary); }
+
+/* ---------------- Upload Artifacts page ---------------- */
+.name-convention {
+  display: inline-block; margin: 8px 0; padding: 6px 12px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .78rem;
+  background: var(--primary-tint); color: var(--primary);
+  border-radius: 9px; border: 1px dashed var(--primary-soft);
+  word-break: break-word;
+}
+.upload-closed { background: var(--rose); color: var(--rose-ink); border: 0; font-weight: 700; }
+
+.upload-matrix-wrap {
+  overflow-x: auto; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 10px;
+}
+.upload-matrix { border-collapse: collapse; min-width: 1700px; font-size: .8rem; width: 100%; }
+.upload-matrix th {
+  font-family: var(--font-display); font-size: .66rem; letter-spacing: .05em;
+  text-transform: uppercase; color: #fff; background: var(--primary);
+  padding: 10px 10px; text-align: left; vertical-align: top; min-width: 108px;
+}
+.upload-matrix th:first-child { border-top-left-radius: 12px; }
+.upload-matrix th:last-child { border-top-right-radius: 12px; }
+.upload-matrix th .um-n {
+  display: block; font-size: .78rem; opacity: .75; margin-bottom: 2px;
+}
+.upload-matrix td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.upload-matrix td.um-team {
+  position: sticky; left: 0; background: var(--primary-tint); z-index: 1;
+  border-right: 1px solid var(--line); min-width: 190px;
+}
+.upload-matrix th.um-team { position: sticky; left: 0; z-index: 2; background: var(--primary); min-width: 190px; }
+.upload-matrix td.um-team b { display: block; color: var(--primary); font-family: var(--font-display); }
+.upload-matrix td.um-team span { display: block; font-size: .74rem; color: var(--muted); line-height: 1.4; }
+.upload-matrix td.um-empty { color: #cfcde4; text-align: center; }
+.upload-matrix td.um-hit a { font-weight: 700; white-space: nowrap; }
+.upload-matrix td.um-hit a:hover { text-decoration: underline; }
+.upload-matrix .um-time { display: block; font-size: .7rem; color: var(--muted); margin-top: 2px; }
+.upload-matrix tbody tr:hover td:not(.um-team) { background: var(--lav); }

@@ -258,6 +258,22 @@ const CUSTOMER_EVAL_FORMS = {
   "Query Everything":                "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=_SAtMH8AiUysxCra3WVQjqTVZS2StlZDs5TP-TDmrwRUQzRBVUhFT045VTY3U0RWUjJNQVhKMVZGVi4u"
 };
 
+/* ---------------- Artifact uploads (submission desk) ---------------- */
+const UPLOAD = {
+  /* Paste the shared upload folder link (OneDrive / SharePoint) here.
+     Leave empty to show the "link coming soon" state. */
+  url: "",
+  deadlineISO: "2026-08-01T14:00:00+06:00",
+  deadlineLabel: "1 August 2026 · 2:00 PM (Bangladesh Standard Time)"
+};
+
+/* Short column labels for the upload index — one per mandatory artifact (same order as ARTIFACTS) */
+const ARTIFACT_COLUMNS = [
+  "Requirement Package", "Open Questions Register", "RML Status", "UCM Classification",
+  "RVW Record", "Risk / Assumption Register", "Solution Approval", "Deliverable WBS",
+  "Risk Buffer + Assumptions", "Scope + Margin Baseline", "BRC Decision", "Technical Proposal"
+];
+
 /* ---------------- Team Formation (20 teams, from 'Team Formation' + 'RFP Handling Team' sheets) ---------------- */
 const TEAMS = [
   {
