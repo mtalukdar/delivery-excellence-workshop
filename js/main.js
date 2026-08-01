@@ -100,11 +100,18 @@
 
   /* ---------------- Reveal on scroll ---------------- */
   function initReveal() {
+    /* Two thresholds: elements taller than half the viewport can never reach
+       a 12% intersection ratio, so for those any intersection reveals them. */
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+        if (!e.isIntersecting) return;
+        const tall = e.boundingClientRect.height > window.innerHeight * 0.5;
+        if (tall || e.intersectionRatio >= 0.12) {
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: [0, 0.12] });
     document.querySelectorAll(".reveal").forEach(el => io.observe(el));
   }
 
