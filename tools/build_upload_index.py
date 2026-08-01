@@ -76,12 +76,21 @@ def version_of(name):
 
 
 def list_nextcloud(share_url):
-    """Yield (filename, mtime_epoch, download_url) for every file on the share."""
+    """Yield (filename, upload_epoch, download_url) for every file on the share.
+
+    Uses Nextcloud's nc:upload_time (when the file actually arrived on the
+    server); getlastmodified is only a fallback, since Nextcloud preserves
+    the uploader's original file-modification time there.
+    """
     token = share_url.rstrip("/").split("/")[-1]
     base = share_url.split("/index.php/")[0]
+    body = (b'<?xml version="1.0"?>'
+            b'<d:propfind xmlns:d="DAV:" xmlns:nc="http://nextcloud.org/ns">'
+            b'<d:prop><d:resourcetype/><d:getlastmodified/><nc:upload_time/></d:prop>'
+            b'</d:propfind>')
     req = urllib.request.Request(
-        base + "/public.php/webdav/", method="PROPFIND",
-        headers={"Depth": "1",
+        base + "/public.php/webdav/", method="PROPFIND", data=body,
+        headers={"Depth": "1", "Content-Type": "application/xml",
                  "Authorization": "Basic " + __import__("base64").b64encode(
                      (token + ":").encode()).decode()})
     try:
@@ -95,15 +104,21 @@ def list_nextcloud(share_url):
                      "share to 'Allow upload and editing' and rerun this script.")
         sys.exit(f"Nextcloud listing failed: HTTP {e.code}\n{body[:500]}")
 
-    ns = {"d": "DAV:"}
+    ns = {"d": "DAV:", "nc": "http://nextcloud.org/ns"}
     for resp in ET.fromstring(xml).findall("d:response", ns):
         href = resp.find("d:href", ns).text
         name = urllib.parse.unquote(href.rstrip("/").split("/")[-1])
-        prop = resp.find(".//d:prop", ns)
-        if prop.find("d:resourcetype/d:collection", ns) is not None:
+        ok = resp.find("d:propstat[d:status='HTTP/1.1 200 OK']/d:prop", ns)
+        if ok is None or ok.find("d:resourcetype/d:collection", ns) is not None:
             continue  # the folder itself / subfolders
-        lm = prop.find("d:getlastmodified", ns)
-        mtime = parsedate_to_datetime(lm.text).timestamp() if lm is not None else 0
+        up = ok.find("nc:upload_time", ns)
+        lm = ok.find("d:getlastmodified", ns)
+        if up is not None and up.text and up.text.isdigit() and int(up.text) > 0:
+            mtime = int(up.text)
+        elif lm is not None and lm.text:
+            mtime = parsedate_to_datetime(lm.text).timestamp()
+        else:
+            mtime = 0
         dl = f"{share_url}/download?path=%2F&files={urllib.parse.quote(name)}"
         yield name, mtime, dl
 
