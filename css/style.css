@@ -731,12 +731,17 @@ img { max-width: 100%; }
 .upload-matrix th:last-child { border-top-right-radius: 12px; }
 .upload-matrix td { padding: 8px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .upload-matrix tr.um-first td { border-top: 2px solid var(--primary-tint); }
+.upload-matrix th.um-team, .upload-matrix td.um-team { width: 110px; max-width: 110px; }
+.upload-matrix th.um-team { white-space: normal; }
 .upload-matrix td.um-team {
   background: var(--primary-tint); border-right: 1px solid var(--line);
-  min-width: 200px; vertical-align: top; padding-top: 14px;
+  vertical-align: top; padding: 14px 10px 8px;
+  overflow-wrap: break-word;
 }
-.upload-matrix td.um-team b { display: block; color: var(--primary); font-family: var(--font-display); font-size: .95rem; }
-.upload-matrix td.um-team span { display: block; font-size: .78rem; color: var(--muted); line-height: 1.5; }
+.upload-matrix td.um-team b { display: block; color: var(--primary); font-family: var(--font-display); font-size: .9rem; }
+.upload-matrix td.um-team span { display: block; font-size: .72rem; color: var(--muted); line-height: 1.45; margin-top: 3px; }
+.upload-matrix tr.um-rfp td:not(.um-team) { background: var(--gold); }
+.upload-matrix tr.um-rfp.um-missing td:not(.um-team) { background: transparent; }
 .upload-matrix td.um-art { white-space: nowrap; font-weight: 500; }
 .upload-matrix td.um-art .um-n { color: var(--primary-soft); font-weight: 700; font-family: var(--font-display); }
 .upload-matrix tr.um-missing td:not(.um-team) { color: #cfcde4; }

@@ -367,7 +367,7 @@
 
     function drawCta(open) {
       if (!open) {
-        cta.innerHTML = `<span class="eval-btn-soon upload-closed">🔒 Uploads closed at 2:00 PM — the pack you submitted is the pack that gets judged.</span>`;
+        cta.innerHTML = `<span class="eval-btn-soon upload-closed">🔒 Uploads closed at 3:00 PM — the pack you submitted is the pack that gets judged.</span>`;
         return;
       }
       cta.innerHTML = UPLOAD.url
@@ -407,16 +407,19 @@
           <th>Uploaded</th>
         </tr></thead>`;
 
+        const ROWS = [{ n: 0, label: "The RfP (as issued)" }]
+          .concat(ARTIFACT_COLUMNS.map((c, i) => ({ n: i + 1, label: c })));
+
         const rows = TEAMS.map(t => {
           const arts = byRfp[t.rfp] || {};
-          return ARTIFACT_COLUMNS.map((c, i) => {
-            const a = arts[String(i + 1)];
+          return ROWS.map((r, i) => {
+            const a = arts[String(r.n)];
             const teamCell = i === 0
-              ? `<td class="um-team" rowspan="${ARTIFACT_COLUMNS.length}"><b>${t.rfp}</b><span>${t.customer}</span><span>${t.name}</span></td>`
+              ? `<td class="um-team" rowspan="${ROWS.length}"><b>${t.rfp}</b><span>${t.customer}</span><span>${t.name}</span></td>`
               : "";
-            return `<tr class="${i === 0 ? "um-first" : ""}${a ? "" : " um-missing"}">
+            return `<tr class="${i === 0 ? "um-first" : ""}${r.n === 0 ? " um-rfp" : ""}${a ? "" : " um-missing"}">
               ${teamCell}
-              <td class="um-art"><span class="um-n">${i + 1}.</span> ${c}</td>
+              <td class="um-art"><span class="um-n">${r.n}.</span> ${r.label}</td>
               ${a
                 ? `<td class="um-hit"><a href="${a.url}" download title="${a.name.replace(/"/g, "&quot;")}">📄 ${a.name}</a></td><td class="um-time-cell">${a.time}</td>`
                 : `<td class="um-empty">—</td><td class="um-empty">—</td>`}

@@ -53,10 +53,20 @@ RFP = re.compile(r"\[?\s*RFP[\s\-_]?(\d{1,2})\s*\]?", re.I)
 
 
 def classify(name):
+    # Artifact 0 — the issued RfP pack itself, checked FIRST because pack
+    # names embed team names ("The Baseline Defenders") that would otherwise
+    # trip the keyword rules. Original packs carry three bracketed groups
+    # ([RFP-xx][Customer][Team] Project - v1.0.0); team uploads use two
+    # ([RFP XX][Project] Artifact V-x.y.z).
+    if len(re.findall(r"\[[^\]]+\]", name)) >= 3:
+        return 0
     low = name.lower()
     for art, keys in RULES:
         if any(k in low for k in keys):
             return art
+    # a stripped name containing "rfp" outside the tag also counts as the pack
+    if "rfp" in RFP.sub("", name, count=1).lower():
+        return 0
     return None
 
 
