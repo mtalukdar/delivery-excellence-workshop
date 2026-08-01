@@ -386,7 +386,7 @@
     tick();
     const timer = setInterval(tick, 1000);
 
-    /* ---- Submission index matrix ---- */
+    /* ---- Submission index (one row per artifact, team spans its rows) ---- */
     const table = document.getElementById("upload-matrix");
     if (table) {
       const byRfp = {};
@@ -394,21 +394,26 @@
 
       const head = `<thead><tr>
         <th class="um-team">RfP · Customer · Team</th>
-        ${ARTIFACT_COLUMNS.map((c, i) => `<th><span class="um-n">${i + 1}</span>${c}</th>`).join("")}
+        <th>Artifact</th>
+        <th>File</th>
+        <th>Uploaded</th>
       </tr></thead>`;
 
       const rows = TEAMS.map(t => {
         const arts = byRfp[t.rfp] || {};
-        const cells = ARTIFACT_COLUMNS.map((c, i) => {
+        return ARTIFACT_COLUMNS.map((c, i) => {
           const a = arts[String(i + 1)];
-          return a
-            ? `<td class="um-hit"><a href="${a.url}" download title="${a.name.replace(/"/g, "&quot;")}">📄 File</a><span class="um-time">${a.time}</span></td>`
-            : `<td class="um-empty">—</td>`;
+          const teamCell = i === 0
+            ? `<td class="um-team" rowspan="${ARTIFACT_COLUMNS.length}"><b>${t.rfp}</b><span>${t.customer}</span><span>${t.name}</span></td>`
+            : "";
+          return `<tr class="${i === 0 ? "um-first" : ""}${a ? "" : " um-missing"}">
+            ${teamCell}
+            <td class="um-art"><span class="um-n">${i + 1}.</span> ${c}</td>
+            ${a
+              ? `<td class="um-hit"><a href="${a.url}" download title="${a.name.replace(/"/g, "&quot;")}">📄 ${a.name}</a></td><td class="um-time-cell">${a.time}</td>`
+              : `<td class="um-empty">—</td><td class="um-empty">—</td>`}
+          </tr>`;
         }).join("");
-        return `<tr>
-          <td class="um-team"><b>${t.rfp}</b><span>${t.customer}</span><span>${t.name}</span></td>
-          ${cells}
-        </tr>`;
       }).join("");
 
       table.innerHTML = head + `<tbody>${rows}</tbody>`;
