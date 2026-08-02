@@ -274,6 +274,18 @@ const ARTIFACT_COLUMNS = [
   "Risk Buffer + Assumptions", "Scope + Margin Baseline", "BRC Decision", "Technical Proposal"
 ];
 
+/* ---------------- Winners (announced at closing, 1 Aug 2026) ---------------- */
+const TEAM_WINNERS = [
+  { place: 1, rfp: "RFP-09" },   // React & Sign-Off
+  { place: 2, rfp: "RFP-16" },   // Reign, No Rain
+  { place: 3, rfp: "RFP-20" }    // Query Everything
+];
+const CUSTOMER_WINNERS = [
+  { place: 1, rfp: "RFP-09" },   // customer of React & Sign-Off
+  { place: 2, rfp: "RFP-16" },   // customer of Reign, No Rain
+  { place: 3, rfp: "RFP-17" }    // customer of Full-Stack, Full Margin
+];
+
 /* ---------------- Team Formation (20 teams, from 'Team Formation' + 'RFP Handling Team' sheets) ---------------- */
 const TEAMS = [
   {

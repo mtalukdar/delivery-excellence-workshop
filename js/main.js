@@ -148,7 +148,7 @@
     function render() {
       const diff = target - Date.now();
       if (diff <= 0) {
-        box.innerHTML = `<div class="countdown-live">🎉 The workshop is live — see you on the floors!</div>`;
+        box.innerHTML = `<div class="countdown-live">🎉 That's a wrap! Congratulations to all 20 teams — see the <a href="evaluation.html" style="color:inherit;text-decoration:underline">winners</a>.</div>`;
         clearInterval(timer);
         return;
       }
@@ -355,6 +355,44 @@
       }, { threshold: 0.35 });
       rubric.querySelectorAll(".rubric-item").forEach(el => io.observe(el));
     }
+  }
+
+  /* ---------------- Winner podiums (Team & Customer Evaluation pages) ---------------- */
+  function renderPodiums() {
+    function podium(el, winners, mode) {
+      if (!el) return;
+      const medals = { 1: "🥇", 2: "🥈", 3: "🥉" };
+      const display = [winners[1], winners[0], winners[2]].filter(Boolean); // 2nd · 1st · 3rd
+      el.innerHTML = display.map(w => {
+        const t = TEAMS.find(x => x.rfp === w.rfp) || {};
+        const rfp = RFPS.find(r => r.id === w.rfp) || {};
+        const big = mode === "customer" ? t.customer : t.name;
+        const small = mode === "customer" ? t.name : "Customer: " + t.customer;
+        return `<div class="podium-col place-${w.place}">
+          <div class="podium-medal">${medals[w.place]}</div>
+          <span class="team-logo grad-${rfp.filter || "web"}">${mode === "customer" ? "🧑‍⚖️" : (t.logo || "🏆")}</span>
+          <h3 class="podium-name">${big}</h3>
+          <p class="podium-meta">${w.rfp} · ${small}</p>
+          <div class="podium-step">${w.place}</div>
+        </div>`;
+      }).join("");
+
+      const sec = el.closest(".celebrate");
+      if (sec && !sec.querySelector(".confetti")) {
+        const colors = ["#7472c9", "#4fae8d", "#e8b23f", "#e8926f", "#5b8fd4", "#a54a68", "#c9a24b"];
+        const holder = document.createElement("div");
+        holder.className = "confetti";
+        holder.setAttribute("aria-hidden", "true");
+        let bits = "";
+        for (let i = 0; i < 80; i++) {
+          bits += `<i style="left:${(Math.random() * 100).toFixed(1)}%;background:${colors[i % colors.length]};animation-delay:${(Math.random() * 7).toFixed(2)}s;animation-duration:${(4.5 + Math.random() * 4).toFixed(2)}s"></i>`;
+        }
+        holder.innerHTML = bits;
+        sec.prepend(holder);
+      }
+    }
+    podium(document.getElementById("team-podium"), TEAM_WINNERS, "team");
+    podium(document.getElementById("customer-podium"), CUSTOMER_WINNERS, "customer");
   }
 
   /* ---------------- Upload Artifacts page ---------------- */
@@ -644,6 +682,7 @@
     renderGovernance();
     renderEvaluation();
     renderRfpDetails();
+    renderPodiums();
     renderUploadArtifacts();
     renderCustomerEval();
     renderParticipants();
