@@ -144,12 +144,13 @@
     const box = document.getElementById("countdown");
     if (!box) return;
     const target = new Date(WORKSHOP.eventISO).getTime();
+    let timer = null;
 
     function render() {
       const diff = target - Date.now();
       if (diff <= 0) {
         box.innerHTML = `<div class="countdown-live">🎉 That's a wrap! Congratulations to all 20 teams — see the <a href="evaluation.html" style="color:inherit;text-decoration:underline">winners</a>.</div>`;
-        clearInterval(timer);
+        if (timer) clearInterval(timer);
         return;
       }
       const d = Math.floor(diff / 86400000);
@@ -161,7 +162,7 @@
         `<div class="count-cell"><b>${String(v).padStart(2, "0")}</b><span>${l}</span></div>`).join("");
     }
     render();
-    const timer = setInterval(render, 1000);
+    if (target > Date.now()) timer = setInterval(render, 1000);
   }
 
   /* ---------------- Agenda timeline ---------------- */
@@ -402,6 +403,7 @@
 
     const deadline = new Date(UPLOAD.deadlineISO).getTime();
     const box = document.getElementById("upload-countdown");
+    let timer = null;
 
     function drawCta(open) {
       if (!open) {
@@ -418,7 +420,7 @@
       if (diff <= 0) {
         box.innerHTML = `<div class="countdown-live" style="background:var(--rose);color:var(--rose-ink)">⛔ The submission window is closed</div>`;
         drawCta(false);
-        clearInterval(timer);
+        if (timer) clearInterval(timer);
         return;
       }
       const h = Math.floor(diff / 3600000);
@@ -429,7 +431,7 @@
     }
     drawCta(Date.now() < deadline);
     tick();
-    const timer = setInterval(tick, 1000);
+    if (deadline > Date.now()) timer = setInterval(tick, 1000);
 
     /* ---- Submission index (one row per artifact, team spans its rows) ---- */
     const table = document.getElementById("upload-matrix");
